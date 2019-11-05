@@ -11,152 +11,167 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <script src="https://code.highcharts.com/highcharts.src.js"></script>
     <title>Old Activity</title>
-    <script>   
-    $(document).ready(function () {
-       
-        $("#addcalender").click(function () { 
-        
+    <script>
+        $(document).ready(function () {
 
-            
+            $("#addcalender").click(function () {
+
+
+
+            });
+            $("#drop").click(function () {
+                $("#first").attr('disabled', true);
+
+            });
         });
-        $("#drop").click(function () { 
-            $("#first").attr('disabled',true);
-            
-        });
-    });
     </script>
     <style>
         #logout {
             border: 2px solid red;
-            color:red;
+            color: red;
         }
 
         h4 {
             text-align: center;
         }
-        #c{
+
+        #c {
             text-align: center;
         }
-       
-        #d{
+
+        #d {
             color: red;
         }
-        .carousel-caption h3  span{
+
+        .carousel-caption h3 span {
             background-color: black;
             padding: 15px;
         }
+
         .carousel-caption p span {
-            
-            background-color:black;
+
+            background-color: black;
             padding: 15px;
         }
+
         .carousel-caption h3 {
             font-size: 40px;
         }
+
         .carousel-caption p {
             font-size: 30px;
         }
+
         .carousel-caption {
-    position: absolute;
-    top: 40%;
-    left: 1.8%;
-    right: auto;
-    width: 96.66666666666666%;
-    color: #fff;
+            position: absolute;
+            top: 40%;
+            left: 1.8%;
+            right: auto;
+            width: 96.66666666666666%;
+            color: #fff;
         }
-      
-      
     </style>
 </head>
 
 <body>
     <div class="container">
 
-        <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
-            <div class="container-fluid">
-                <!-- <a class="navbar-brand" href="#"><img src="img/logo.png"></a> -->
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="#">หน้าหลัก</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">ข้อมูลผู้สูงอายุ</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">คิวอาร์โค้ด</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">กิจกรรม</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="#">ออกจากระบบ</a>
-                        </li>
-                    </ul>
-                </div>
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+            <a class="navbar-brand" href="#">logo</a>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-success" type="submit">ค้นหา</button>
+                    <button type="button" class="btn btn-success ml-2" type="submit">เข้าสู่ระบบ</button>
+                </form>
+
+
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">หน้าหลัก <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">ข้อมูลผู้สูงอายุ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">กิจกรรม</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+
+                </ul>
+                <button class="btn btn-danger">ออกจากระบบ</button>
+
+
             </div>
         </nav>
         <!-- dropdown -->
-       
-           <input type="text" placeholder="วัน">
-            <select id="drop">                
-                <option id="first" >เดือน</option>
-                <option>มกราคม</option>
-                <option>กุมภาพันธ์</option>
-                <option>มีนาคม</option>
-                <option >เมษายน</option>
-                <option >พฤษภาคม</option>
-                <option >มิถุนายน</option>
-                <option >กรกฎาคม</option>
-                <option >สิงหาคม</option>
-                <option >กันยายน</option>
-                <option >ตุลาคม</option>
-                <option >พฤศจิกายน</option>
-                <option >ธันวาคม</option>
-            </select>
-            <input type="text" placeholder="ปี">
-           
+
+        <input type="text" placeholder="วัน">
+        <select id="drop">
+            <option id="first">เดือน</option>
+            <option>มกราคม</option>
+            <option>กุมภาพันธ์</option>
+            <option>มีนาคม</option>
+            <option>เมษายน</option>
+            <option>พฤษภาคม</option>
+            <option>มิถุนายน</option>
+            <option>กรกฎาคม</option>
+            <option>สิงหาคม</option>
+            <option>กันยายน</option>
+            <option>ตุลาคม</option>
+            <option>พฤศจิกายน</option>
+            <option>ธันวาคม</option>
+        </select>
+        <input type="text" placeholder="ปี">
+
     </div>
     <div class="row">
-        
-                <table id="myTable" class="table table-striped table-bordered my-4 mx-4" style="width:100%">
-                        <tr id="po">
-            
-                            <td>วันที่</td>
-                            <td>ชื่อกิจกรรม</td>
-                            <td>รายละเอียด</td>
-                           
-                        </tr>
-                        <tr>
-                            <td>1/11/2562</td>
-                            <td id="po1">ปลูกป่า</td>
-                            <td id="po2">รับผิดชอบโดย นายสุรสัก จำปี ปลูกป่าเพื่อประโยชน์ <a href="#" class="btn btn-outline-primary">ดูเพิ่มเติม</a></td>
-                            <td><button>เข้าร่วม</button></td>
-                        </tr>
-                        <tr >
-                                <td>1/11/2562</td>
-                                <td id="po1">ปลูกป่า</td>
-                                <td id="po2">รับผิดชอบโดย นายสุรสัก จำปี ปลูกป่าเพื่อประโยชน์ <a href="#" class="btn btn-outline-primary">ดูเพิ่มเติม</a></td>
-                                <td><button>เข้าร่วม</button></td>
-                        </tr>
-                        <tr >
-                                <td>1/11/2562</td>
-                            <td id="po1">ปลูกป่า</td>
-                            <td id="po2">รับผิดชอบโดย นายสุรสัก จำปี ปลูกป่าเพื่อประโยชน์ <a href="#" class="btn btn-outline-primary">ดูเพิ่มเติม</a></td>
-                            <td><button>เข้าร่วม</button></td>
-                            </tr>
-                    </table>    
-                   
-           <!-- <tr><td>1/11/2562</td></tr>
+
+        <table id="myTable" class="table table-striped table-bordered my-4 mx-4" style="width:100%">
+            <tr id="po">
+
+                <td>วันที่</td>
+                <td>ชื่อกิจกรรม</td>
+                <td>รายละเอียด</td>
+
+            </tr>
+            <tr>
+                <td>1/11/2562</td>
+                <td id="po1">ปลูกป่า</td>
+                <td id="po2">รับผิดชอบโดย นายสุรสัก จำปี ปลูกป่าเพื่อประโยชน์ <a href="#"
+                        class="btn btn-outline-primary">ดูเพิ่มเติม</a></td>
+                <td><button>เข้าร่วม</button></td>
+            </tr>
+            <tr>
+                <td>1/11/2562</td>
+                <td id="po1">ปลูกป่า</td>
+                <td id="po2">รับผิดชอบโดย นายสุรสัก จำปี ปลูกป่าเพื่อประโยชน์ <a href="#"
+                        class="btn btn-outline-primary">ดูเพิ่มเติม</a></td>
+                <td><button>เข้าร่วม</button></td>
+            </tr>
+            <tr>
+                <td>1/11/2562</td>
+                <td id="po1">ปลูกป่า</td>
+                <td id="po2">รับผิดชอบโดย นายสุรสัก จำปี ปลูกป่าเพื่อประโยชน์ <a href="#"
+                        class="btn btn-outline-primary">ดูเพิ่มเติม</a></td>
+                <td><button>เข้าร่วม</button></td>
+            </tr>
+        </table>
+
+        <!-- <tr><td>1/11/2562</td></tr>
             <tr>กิจกรรม</tr>
             <tr>รายละเอียด</tr> -->
-            
-        
+
+
     </div>
-    
+
 </body>
 
 </html>
