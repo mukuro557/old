@@ -5,11 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://code.highcharts.com/highcharts.src.js"></script>
+   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.3.2/bootbox.min.js"></script>
+   <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+   <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+   <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+   <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+
     <title>Old Activity</title>
     <script>
         $(document).ready(function () {
@@ -22,6 +32,138 @@
             $("#drop").click(function () {
                 $("#first").attr('disabled', true);
 
+            });
+            var dataSet = [
+                {
+                    "id": "6231302001",
+                    "name": "Ethan Hunt",
+                    "gender": "Male",
+                    "major": "CS",
+                    "school": "IT",
+                },
+                {
+                    "id": "6231302002",
+                    "name": "Lara Croft",
+                    "gender": "Female",
+                    "major": "CE",
+                    "school": "IT",
+                },
+                {
+                    "id": "6231302003",
+                    "name": "Tom Hank",
+                    "gender": "Male",
+                    "major": "CS",
+                    "school": "IT",
+                },
+                {
+                    "id": "6231302004",
+                    "name": "Michael Jackson",
+                    "gender": "Female",
+                    "major": "CE",
+                    "school": "IT",
+                },
+                {
+                    "id": "6231302005",
+                    "name": "Peter Parker",
+                    "gender": "Male",
+                    "major": "CS",
+                    "school": "IT",
+                },
+                {
+                    "id": "6231302006",
+                    "name": "Nathan Drag",
+                    "gender": "Female",
+                    "major": "CE",
+                    "school": "IT",
+                },
+                {
+                    "id": "6231302007",
+                    "name": "John Snow",
+                    "gender": "Male",
+                    "major": "CS",
+                    "school": "IT",
+                },
+                {
+                    "id": "6231302008",
+                    "name": "John Smith",
+                    "gender": "Female",
+                    "major": "CE",
+                    "school": "IT",
+                },
+                {
+                    "id": "6231302009",
+                    "name": "Jane Doe",
+                    "gender": "Male",
+                    "major": "CS",
+                    "school": "IT",
+                },
+                {
+                    "id": "6231302010",
+                    "name": "Will Smith",
+                    "gender": "Female",
+                    "major": "CE",
+                    "school": "IT",
+                },
+                {
+                    "id": "6231302011",
+                    "name": "Sam Bowl",
+                    "gender": "Male",
+                    "major": "CS",
+                    "school": "IT",
+                },
+                {
+                    "id": "6231302012",
+                    "name": "Jane Lord",
+                    "gender": "Female",
+                    "major": "CE",
+                    "school": "IT",
+                },
+                {
+                    "id": "6231302013",
+                    "name": "Sara Conner",
+                    "gender": "Male",
+                    "major": "CS",
+                    "school": "IT",
+                },
+                {
+                    "id": "6231302014",
+                    "name": "Lady Gaga",
+                    "gender": "Female",
+                    "major": "CE",
+                    "school": "IT",
+                },
+                {
+                    "id": "6231302015",
+                    "name": "Lionel Messi",
+                    "gender": "Male",
+                    "major": "CS",
+                    "school": "IT",
+                },
+                {
+                    "id": "6231302016",
+                    "name": "Christiano Ronaldo",
+                    "gender": "Female",
+                    "major": "CE",
+                    "school": "IT",
+                }
+            ];
+
+            var table = $('#myTable').DataTable({
+                responsive: true,       //for responsive column display
+                deferRender: true,      //if large data, use this option
+                data: dataSet,
+                columns: [
+                    { data: "id", title: "ID" },
+                    { data: "name", title: "Name" },
+                    { data: "gender", title: "Gender" },
+                    { data: "major", title: "Major" },
+                    { data: "school", title: "School" },
+                    { title: "Action", orderable: false, defaultContent: "<button class='btn btn-danger my-1'>Delete</button> <button class='btn btn-warning my-1'>Edit</button>" }
+                ],
+                columnDefs: [
+                    // make the last column align right, also target: "_all"
+                    { "className": "dt-center", "targets": 5 }
+                ]
             });
         });
     </script>
@@ -113,45 +255,17 @@
         </nav>
 
 
-    </div>
+    
     <div class="row">
 
-        <table id="myTable" class="table table-striped table-bordered my-4 mx-4" style="width:100%">
-            <tr id="po">
-
-                <td>วันที่</td>
-                <td>ชื่อกิจกรรม</td>
-                <td>รายละเอียด</td>
-
-            </tr>
-            <tr>
-                <td>1/11/2562</td>
-                <td id="po1">ปลูกป่า</td>
-                <td id="po2">รับผิดชอบโดย นายสุรสัก จำปี ปลูกป่าเพื่อประโยชน์ <a href="#"
-                        class="btn btn-outline-primary">ดูเพิ่มเติม</a></td>
-                <td><button>เข้าร่วม</button></td>
-            </tr>
-            <tr>
-                <td>1/11/2562</td>
-                <td id="po1">ปลูกป่า</td>
-                <td id="po2">รับผิดชอบโดย นายสุรสัก จำปี ปลูกป่าเพื่อประโยชน์ <a href="#"
-                        class="btn btn-outline-primary">ดูเพิ่มเติม</a></td>
-                <td><button>เข้าร่วม</button></td>
-            </tr>
-            <tr>
-                <td>1/11/2562</td>
-                <td id="po1">ปลูกป่า</td>
-                <td id="po2">รับผิดชอบโดย นายสุรสัก จำปี ปลูกป่าเพื่อประโยชน์ <a href="#"
-                        class="btn btn-outline-primary">ดูเพิ่มเติม</a></td>
-                <td><button>เข้าร่วม</button></td>
-            </tr>
+        <table id="myTable" class="table table-striped table-bordered" style="width:100%">
         </table>
 
         <!-- <tr><td>1/11/2562</td></tr>
             <tr>กิจกรรม</tr>
             <tr>รายละเอียด</tr> -->
 
-
+        </div>
     </div>
     <div class="container-fluid">
         <footer  style="background-color: #343a40">
