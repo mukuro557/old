@@ -33,119 +33,46 @@
                 $("#first").attr('disabled', true);
 
             });
+            
             var dataSet = [
                 {
-                    "id": "6231302001",
-                    "name": "Ethan Hunt",
-                    "gender": "Male",
-                    "major": "CS",
-                    "school": "IT",
+                    "date": '1/11/62',
+                    "name": "วิ่งเพื่อสุขภาพ",
+                    "organize": "สุรพง",
+                    "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ",
                 },
                 {
-                    "id": "6231302002",
-                    "name": "Lara Croft",
-                    "gender": "Female",
-                    "major": "CE",
-                    "school": "IT",
+                    "date": "8/11/62",
+                    "name": "โรงเรียนผู้สูงอายุ",
+                    "organize": "สุรพง",
+                    "info": "เรียนรู้เรื่องราวใหม่ๆ วัดบัานแม่เลียบ ต.โชคชัย",
                 },
                 {
-                    "id": "6231302003",
-                    "name": "Tom Hank",
-                    "gender": "Male",
-                    "major": "CS",
-                    "school": "IT",
+                    "date": "15/11/62",
+                    "name": "มินิมาราทอนผู้สูงอายุ",
+                    "organize": "สุรพง",
+                    "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ ณ บ้านป่าลัน",
                 },
                 {
-                    "id": "6231302004",
-                    "name": "Michael Jackson",
-                    "gender": "Female",
-                    "major": "CE",
-                    "school": "IT",
+                    "date": "20/11/62",
+                    "name": "ปลูกป่า",
+                    "organize": "สุรพง",
+                    "info": "รักสิ่งแวดล้อม ปลูกป่าชุมชน ณ บ้านแม่เลียบ ",
                 },
                 {
-                    "id": "6231302005",
-                    "name": "Peter Parker",
-                    "gender": "Male",
-                    "major": "CS",
-                    "school": "IT",
+                    "date": "26/11/62",
+                    "name": "เดินวิ่งเพื่อสุขภาพ",
+                    "organize": "สุรพง",
+                    "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ บ้านใหม่ดอนงาม",
                 },
                 {
-                    "id": "6231302006",
-                    "name": "Nathan Drag",
-                    "gender": "Female",
-                    "major": "CE",
-                    "school": "IT",
+                    "date": "30/11/62",
+                    "name": "วิ่งตามฝัน",
+                    "organize": "สุรพง",
+                    "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ บ้านซ้อ",
+                    
                 },
-                {
-                    "id": "6231302007",
-                    "name": "John Snow",
-                    "gender": "Male",
-                    "major": "CS",
-                    "school": "IT",
-                },
-                {
-                    "id": "6231302008",
-                    "name": "John Smith",
-                    "gender": "Female",
-                    "major": "CE",
-                    "school": "IT",
-                },
-                {
-                    "id": "6231302009",
-                    "name": "Jane Doe",
-                    "gender": "Male",
-                    "major": "CS",
-                    "school": "IT",
-                },
-                {
-                    "id": "6231302010",
-                    "name": "Will Smith",
-                    "gender": "Female",
-                    "major": "CE",
-                    "school": "IT",
-                },
-                {
-                    "id": "6231302011",
-                    "name": "Sam Bowl",
-                    "gender": "Male",
-                    "major": "CS",
-                    "school": "IT",
-                },
-                {
-                    "id": "6231302012",
-                    "name": "Jane Lord",
-                    "gender": "Female",
-                    "major": "CE",
-                    "school": "IT",
-                },
-                {
-                    "id": "6231302013",
-                    "name": "Sara Conner",
-                    "gender": "Male",
-                    "major": "CS",
-                    "school": "IT",
-                },
-                {
-                    "id": "6231302014",
-                    "name": "Lady Gaga",
-                    "gender": "Female",
-                    "major": "CE",
-                    "school": "IT",
-                },
-                {
-                    "id": "6231302015",
-                    "name": "Lionel Messi",
-                    "gender": "Male",
-                    "major": "CS",
-                    "school": "IT",
-                },
-                {
-                    "id": "6231302016",
-                    "name": "Christiano Ronaldo",
-                    "gender": "Female",
-                    "major": "CE",
-                    "school": "IT",
-                }
+                
             ];
 
             var table = $('#myTable').DataTable({
@@ -153,17 +80,19 @@
                 deferRender: true,      //if large data, use this option
                 data: dataSet,
                 columns: [
-                    { data: "id", title: "ID" },
-                    { data: "name", title: "Name" },
-                    { data: "gender", title: "Gender" },
-                    { data: "major", title: "Major" },
-                    { data: "school", title: "School" },
-                    { title: "Action", orderable: false, defaultContent: "<button class='btn btn-danger my-1'>Delete</button> <button class='btn btn-warning my-1'>Edit</button>" }
+                    { data: "date", title: "วันที่" },
+                    { data: "name", title: "กิจกรรม" },
+                    { data: "organize", title: "ผู้จัดงาน" },
+                    { data: "info", title: "รายละเอียด" },
+                    { title: "Action", orderable: false, defaultContent: "<button class='btn btn-success my-1'value='เข้าร่วม'>เข้าร่วม</button>" }
                 ],
                 columnDefs: [
                     // make the last column align right, also target: "_all"
-                    { "className": "dt-center", "targets": 5 }
+                    { "className": "dt-center", "targets": 3 }
                 ]
+            });
+            $('#myTable tbody').on('click', '.btn-success', function () {
+                <!-- $(".btn-success").attr(class , "btn btn-success my-1'value='เข้าร่วม'") -->
             });
         });
     </script>
@@ -218,7 +147,7 @@
 <body>
     <div class="container">
 
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+        <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
             <a class="navbar-brand" href="#">logo</a>
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
                 data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
@@ -256,7 +185,7 @@
 
 
     
-    <div class="row">
+
 
         <table id="myTable" class="table table-striped table-bordered" style="width:100%">
         </table>
@@ -265,7 +194,7 @@
             <tr>กิจกรรม</tr>
             <tr>รายละเอียด</tr> -->
 
-        </div>
+    
     </div>
     <div class="container-fluid">
         <footer  style="background-color: #343a40">
@@ -277,7 +206,7 @@
                         <hr class="light">
                         <div class="row">
                                 <div class="col-sm-12" id="d" >
-                                        <img src="support.png" alt="" width="30" ">
+                                        <img src="support.png" alt="" width="30">
                                            โทร: 091-2828333
                                     </div>
                                 
