@@ -5,20 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
-   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
 
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.3.2/bootbox.min.js"></script>
-   <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-   <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-   <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-   <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.3.2/bootbox.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
 
     <title>Old Activity</title>
     <script>
@@ -33,7 +33,7 @@
                 $("#first").attr('disabled', true);
 
             });
-            
+
             var dataSet = [
                 {
                     "date": '1/11/62',
@@ -70,9 +70,9 @@
                     "name": "วิ่งตามฝัน",
                     "organize": "สุรพง",
                     "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ บ้านซ้อ",
-                    
+
                 },
-                
+
             ];
 
             var table = $('#myTable').DataTable({
@@ -84,15 +84,121 @@
                     { data: "name", title: "กิจกรรม" },
                     { data: "organize", title: "ผู้จัดงาน" },
                     { data: "info", title: "รายละเอียด" },
-                    { title: "Action", orderable: false, defaultContent: "<button class='btn btn-success my-1'value=''>ลบ</button>" }
+                    { title: "Action", orderable: false, defaultContent: "<button class='btn btn-danger my-1'>ลบ</button> <button class='btn btn-warning my-1'>แก้ไข</button>" }
                 ],
                 columnDefs: [
                     // make the last column align right, also target: "_all"
                     { "className": "dt-center", "targets": 3 }
                 ]
             });
-            $('#myTable tbody').on('click', '.btn-success', function () {
-                // <!-- $(".btn-success").attr(class , "btn btn-success my-1'value='เข้าร่วม'") -->
+            // Delete 
+            $('#myTable tbody').on('click', '.btn-danger', function () {
+                var gun = table.row($(this).parents('tr')).data();
+                // console.log(data.id);
+
+                gun.date = dataSet.splice;
+                gun.name = dataSet.splice;
+                gun.organize = dataSet.splice;
+                gun.info = dataSet.splice;
+                $(this).parents("tr").remove();
+                // console.log(data);
+                // let id = $("#txtId").val();
+                // $( this ).parent("tr").remove();
+                // for (i = 0; i < dataSet.length; i++) {
+                //     if (dataSet[i].id == data["id"]) {
+                //         var delet = dataSet[i].id;
+                //         table.row($(this).parents('tr')).remove().draw(false);
+                //         break;
+                //     }
+
+            });
+
+            // Edit
+            $('#myTable tbody').on('click', '.btn-warning', function () {
+                // read data of the selected row
+                check = 1;
+                var data = table.row($(this).parents('tr')).data();
+
+                // show data in modal
+
+                $("#date").val(data.date);
+                $("#txtName").val(data.name);
+                if (data.gender == "Male") {
+                    $("#radioMale").prop('checked', 'true');
+                }
+                else {
+                    $("#radioFemale").prop('checked', 'true');
+                }
+                $("#txtMajor").val(data.major);
+                $("#txtSchool").val(data.school);
+
+                // show modal
+                $("#txtId").attr('disabled', true)
+
+                $("#modalEdit").modal("show");
+
+            });
+
+            // Edit and save
+            $("#btnSave").click(function () {
+                if (check == 1) {
+                    let date = $("#date").val();
+                    let name = $("#txtName").val();
+                    let gender = $("#radioMale").is(":checked") ? "Male" : "Female";
+                    let major = $("#txtMajor").val();
+                    let school = $("#txtSchool").val();
+                    // console.log(id+" "+name+" "+gender+" "+major+" "+school);
+
+                    //search JS object array for "id"
+                    for (var i = 0; i < dataSet.length; i++) {
+                        if (dataSet[i].id == id) {
+                            break;
+                        }
+                    }
+
+                    //close modal
+                    $("#modalEdit").modal('hide');
+                    //get selected row and update value
+
+                    let temp = table.row(i).data();
+                    temp.name = name;
+                    temp.gender = gender;
+                    temp.major = major;
+                    temp.school = school;
+
+                    //update data table
+                    table.row(i).data(temp).invalidate();
+                } else {
+                    let date = $("#date").val();
+                    let name = $("#txtName").val();
+                    let gender = $("#radioMale").is(":checked") ? "Male" : "Female";
+                    let major = $("#txtMajor").val();
+                    let school = $("#txtSchool").val();
+                    //  console.log(id+" "+name+" "+gender+" "+major+" "+school); 
+
+                    //close modal
+                    $("#modalEdit").modal('hide');
+                    table.row.add({
+                        "date": date,
+                        "name": name,
+                        "gender": gender,
+                        "major": major,
+                        "school": school
+
+                    }).draw();
+                }
+                console.log("hello")
+
+            });
+            $("#add").click(function () {
+                check = 0;
+                $("#date").val("");
+                $("#txtName").val("");
+                $("#radioMale").prop('checked', 'true');
+                $("#txtMajor").val("");
+                $("#txtSchool").val("");
+                $("#modalEdit").modal("show");
+
             });
         });
     </script>
@@ -182,57 +288,80 @@
 
             </div>
         </nav>
-
-
-    
-
-
+        <div class="col-12">
+            <button id="add" class="btn btn-success float-right mb-3">Add</button>
+        </div>
         <table id="myTable" class="table table-striped table-bordered" style="width:100%">
         </table>
 
-        
-    
+        <!-- Modal -->
+        <div class="modal fade" id="modalEdit">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title" id="modelTitleId">Edit</h4>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <input type="date" class="form-control mb-1" id="date" >
+                        <input type="text" class="form-control mb-1" id="txtName" placeholder="Name-Surname">
+                        <input type="radio" name="gender" id="radioMale"> Male
+                        <input type="radio" name="gender" id="radioFemale"> Female
+                        <input type="text" class="form-control my-1" id="txtMajor" placeholder="Major">
+                        <input type="text" class="form-control mb-1" id="txtSchool" placeholder="School">
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                        <button id="btnSave" type="button" class="btn btn-primary">Save</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
     <div class="container-fluid">
-        <footer  style="background-color: #343a40">
-                <div class="container-fluid padding">
-                    <div class="row text-center text-light">
-                        <div class="col-md-4">
+        <footer style="background-color: #343a40">
+            <div class="container-fluid padding">
+                <div class="row text-center text-light">
+                    <div class="col-md-4">
                         <hr class="light">
                         <h5>ฉุกเฉิน</h5>
                         <hr class="light">
                         <div class="row">
-                                <div class="col-sm-12" id="d" >
-                                        <img src="support.png" alt="" width="30">
-                                           โทร: 091-2828333
-                                    </div>
-                                
+                            <div class="col-sm-12" id="d">
+                                <img src="support.png" alt="" width="30">
+                                โทร: 091-2828333
+                            </div>
+
 
                         </div>
-                        </div>
-                        <div class="col-md-4">
-                                <hr class="light">
-                                <h5>เกี่ยวกับเรา</h5>
-                                <hr class="light">
-                                <p class="mt-2">ศูนย์จัดเตรียมกิจกรรมมากมายเพื่อผู้สูงอายุ และข่าวประชาสัมพันธ์เรื่องสุขภาพเพื่อชีวิตที่ดีขึ้น</p>
-                                
-                                
-                            </div>
-                        
-                            
-                        
-                        <div class="col-md-4">
-                            <hr class="light">
-                            <h5>ติดต่อเรา</h5>
-                            <hr class="light">
-                            <p class="mt-1">Office: 02-222-0000</p>
-                            <p>Address:City, State, 00000</p>
-                            
-                        </div>
-                        
                     </div>
+                    <div class="col-md-4">
+                        <hr class="light">
+                        <h5>เกี่ยวกับเรา</h5>
+                        <hr class="light">
+                        <p class="mt-2">ศูนย์จัดเตรียมกิจกรรมมากมายเพื่อผู้สูงอายุ
+                            และข่าวประชาสัมพันธ์เรื่องสุขภาพเพื่อชีวิตที่ดีขึ้น</p>
+
+
+                    </div>
+
+
+
+                    <div class="col-md-4">
+                        <hr class="light">
+                        <h5>ติดต่อเรา</h5>
+                        <hr class="light">
+                        <p class="mt-1">Office: 02-222-0000</p>
+                        <p>Address:City, State, 00000</p>
+
+                    </div>
+
                 </div>
-            </footer>
+            </div>
+        </footer>
 
 </body>
 
