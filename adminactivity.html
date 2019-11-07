@@ -36,37 +36,37 @@
 
             var dataSet = [
                 {
-                    "date": '1/11/62',
+                    "date": '2019-11-1',
                     "name": "วิ่งเพื่อสุขภาพ",
                     "organize": "สุรพง",
                     "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ",
                 },
                 {
-                    "date": "8/11/62",
+                    "date": "2019-11-8",
                     "name": "โรงเรียนผู้สูงอายุ",
                     "organize": "สุรพง",
                     "info": "เรียนรู้เรื่องราวใหม่ๆ วัดบัานแม่เลียบ ต.โชคชัย",
                 },
                 {
-                    "date": "15/11/62",
+                    "date": "2019-11-15",
                     "name": "มินิมาราทอนผู้สูงอายุ",
                     "organize": "สุรพง",
                     "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ ณ บ้านป่าลัน",
                 },
                 {
-                    "date": "20/11/62",
+                    "date": "2019-11-20",
                     "name": "ปลูกป่า",
                     "organize": "สุรพง",
                     "info": "รักสิ่งแวดล้อม ปลูกป่าชุมชน ณ บ้านแม่เลียบ ",
                 },
                 {
-                    "date": "26/11/62",
+                    "date": "2019-11-24",
                     "name": "เดินวิ่งเพื่อสุขภาพ",
                     "organize": "สุรพง",
                     "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ บ้านใหม่ดอนงาม",
                 },
                 {
-                    "date": "30/11/62",
+                    "date": "2019-11-30",
                     "name": "วิ่งตามฝัน",
                     "organize": "สุรพง",
                     "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ บ้านซ้อ",
@@ -123,18 +123,10 @@
 
                 $("#date").val(data.date);
                 $("#txtName").val(data.name);
-                if (data.gender == "Male") {
-                    $("#radioMale").prop('checked', 'true');
-                }
-                else {
-                    $("#radioFemale").prop('checked', 'true');
-                }
-                $("#txtMajor").val(data.major);
-                $("#txtSchool").val(data.school);
+                $("#organize").val(data.organize);
+                $("#info").val(data.info);
 
                 // show modal
-                $("#txtId").attr('disabled', true)
-
                 $("#modalEdit").modal("show");
 
             });
@@ -142,16 +134,15 @@
             // Edit and save
             $("#btnSave").click(function () {
                 if (check == 1) {
-                    let date = $("#date").val();
+                    let date = $("#date").data();
                     let name = $("#txtName").val();
-                    let gender = $("#radioMale").is(":checked") ? "Male" : "Female";
-                    let major = $("#txtMajor").val();
-                    let school = $("#txtSchool").val();
-                    // console.log(id+" "+name+" "+gender+" "+major+" "+school);
+                    let organize = $("#organize").val();
+                    let info = $("#info").val();
+                    console.log(date+" "+name+" "+organize+" "+info);
 
                     //search JS object array for "id"
                     for (var i = 0; i < dataSet.length; i++) {
-                        if (dataSet[i].id == id) {
+                        if (dataSet[i].date == date) {
                             break;
                         }
                     }
@@ -161,19 +152,18 @@
                     //get selected row and update value
 
                     let temp = table.row(i).data();
+                    temp.date =  date;
                     temp.name = name;
-                    temp.gender = gender;
-                    temp.major = major;
-                    temp.school = school;
+                    temp.organize = organize;
+                    temp.info = info;
 
                     //update data table
                     table.row(i).data(temp).invalidate();
                 } else {
                     let date = $("#date").val();
                     let name = $("#txtName").val();
-                    let gender = $("#radioMale").is(":checked") ? "Male" : "Female";
-                    let major = $("#txtMajor").val();
-                    let school = $("#txtSchool").val();
+                    let organize = $("#organize").val();
+                    let info = $("#info").val();
                     //  console.log(id+" "+name+" "+gender+" "+major+" "+school); 
 
                     //close modal
@@ -181,22 +171,20 @@
                     table.row.add({
                         "date": date,
                         "name": name,
-                        "gender": gender,
-                        "major": major,
-                        "school": school
+                        "organize": organize,
+                        "info": info
 
                     }).draw();
                 }
-                console.log("hello")
+
 
             });
             $("#add").click(function () {
                 check = 0;
                 $("#date").val("");
                 $("#txtName").val("");
-                $("#radioMale").prop('checked', 'true');
-                $("#txtMajor").val("");
-                $("#txtSchool").val("");
+                $("#organize").val("");
+                $("#info").val("");
                 $("#modalEdit").modal("show");
 
             });
@@ -305,12 +293,10 @@
                         </button>
                     </div>
                     <div class="modal-body">
-                        <input type="date" class="form-control mb-1" id="date" >
-                        <input type="text" class="form-control mb-1" id="txtName" placeholder="Name-Surname">
-                        <input type="radio" name="gender" id="radioMale"> Male
-                        <input type="radio" name="gender" id="radioFemale"> Female
-                        <input type="text" class="form-control my-1" id="txtMajor" placeholder="Major">
-                        <input type="text" class="form-control mb-1" id="txtSchool" placeholder="School">
+                        <input type="date" class="form-control mb-1" id="date">
+                        <input type="text" class="form-control mb-1" id="txtName" placeholder="ชื่อกิจกรรม">
+                        <input type="text" class="form-control mb-1" id="organize" placeholder="ชื่อผู้จัด">
+                        <input type="text" class="form-control my-1" id="info" placeholder="รายละเอียด">
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
