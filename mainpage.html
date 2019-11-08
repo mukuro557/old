@@ -11,6 +11,18 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
 
     <title>Document</title>
+    <script>
+        $(document).ready(function () {
+           $("#login").click(function(){
+            
+            $(".modal-title").html("Hello");
+            $(".modal-body").html("Im a modal");
+        
+
+           });
+          
+        });
+       </script>
    
     <style>
         #logout {
@@ -18,7 +30,7 @@
             color:red;
         }
 
-        h4 {
+        h3 {
             text-align: center;
         }
         #c{
@@ -51,9 +63,32 @@
     width: 96.66666666666666%;
     color: #fff;
         }
-      
+        .modal-header, h4, .close {
+    background-color: #5cb85c;
+    color:white !important;
+    text-align: center;
+    font-size: 30px;
+  }
+  .modal-footer {
+    background-color: #f9f9f9;
+    
+  }
+  .jumbotron{
+            margin-bottom: 0;
+            background-color:darkcyan ;
+            color: wheat;
+        }
+ 
       
     </style>
+
+<script>
+    $(document).ready(function(){
+      $("#submit").click(function(){
+        $("#myModal").modal();
+      });
+    });
+    </script>
 </head>
 
 
@@ -72,9 +107,90 @@
                     <form class="form-inline">
                         <input class="form-control mr-sm-2" type="text" placeholder="Search">
                         <button class="btn btn-success" type="submit">ค้นหา</button>
-                        <button type="button" class="btn btn-success ml-2" type="submit">เข้าสู่ระบบ</button>
                       </form>
                             
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+            <h4><span class="glyphicon glyphicon-lock" ></span> เข้าสู่ระบบ</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span>ชื่อ</label>
+              <input type="text" class="form-control" id="usrname" placeholder="กรอกชื่อ">
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> รหัสผ่าน</label>
+              <input type="text" class="form-control" id="psw" placeholder="กรอกรหัสผ่าน">
+            </div>
+            <div class="checkbox">
+              <label><input type="checkbox" value="" checked>Remember me</label>
+            </div>
+              <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> เข้าสู่ระบบ</button>
+              <button type="submit" class="btn btn-danger btn-block"><span class="glyphicon glyphicon-off"></span>ยกเลิก</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <p >Not a member? <a href="#">ลงทะเบียน</a></p>
+          <p>ลืม <a href="#">รหัสผ่าน?</a></p>
+        </div>
+      </div>
+      
+    </div>
+  </div> 
+   <!-- Modal -->
+   <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header" style="padding:35px 50px;">
+            <h4><span class="glyphicon glyphicon-lock" ></span>ลงทะเบียน</h4>
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          
+        </div>
+        <div class="modal-body" style="padding:40px 50px;">
+          <form role="form">
+            <div class="form-group">
+              <label for="usrname"><span class="glyphicon glyphicon-user"></span>ชื่อ</label>
+              <input type="text" class="form-control" id="usrname" placeholder="กรอกชื่อ">
+            </div>
+            <div class="form-group">
+              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> รหัสผ่าน</label>
+              <input type="text" class="form-control" id="psw" placeholder="กรอกรหัสผ่าน">
+            </div>
+            <div class="form-group">
+                <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> ยืนยันรหัสผ่าน</label>
+                <input type="text" class="form-control" id="repsw" placeholder="กรอกรหัสผ่าน">
+              </div>
+              <div class="form-group">
+                <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> อีเมล์</label>
+                <input type="text" class="form-control" id="email" placeholder="กรอกอีเมล์">
+              </div>
+              <div class="form-group">
+                <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> เบอร์โทรศัพท์</label>
+                <input type="text" class="form-control" id="tel" placeholder="กรอกเบอร์โทรศัพท์">
+              </div>
+              <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> ลงทะเบียน</button>
+              <button type="submit" class="btn btn-danger btn-block"><span class="glyphicon glyphicon-off"></span>ยกเลิก</button>
+          </form>
+        </div>
+        <div class="modal-footer">
+          <p >Not a member? <a href="#">ลงทะเบียน</a></p>
+          <p>ลืม <a href="#">รหัสผ่าน?</a></p>
+        </div>
+      </div>
+      
+    </div>
+  </div> 
+</div>
 
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
@@ -91,11 +207,24 @@
                         </li>
                    
                 </ul>
-                <button class="btn btn-danger">ออกจากระบบ</button>
+
+                <button type="button" class="btn btn-success mr-2" id="submit">เข้าสู่ระบบ</button>
+
                
 
             </div>
         </nav>
+
+        <!-- Jumbotron -->
+    <div class="jumbotron jumbotron-fluid text-center mb-2">
+      <div class="container">
+          <h1 class="display-4">ข่าวประชาสัมพันธ์</h1>
+          <h5>นัดรับเบี้ยผู้สูงอายุ ณ วันที่ 4 ธันวาคม 2562 เวลา 10:00-16:00 น.</h5>
+          
+          
+      </div>
+  </div>
+
         <div id="demo" class="carousel slide" data-ride="carousel">
 
             <!-- Indicators -->
@@ -139,14 +268,14 @@
             </a>
         </div>
 
-        <h4 class="mt-3">มุมสุขภาพ</h4>
+        <h3 class="mt-3">มุมสุขภาพ</h3>
         <div class="container">
             <div class="row">
                 <div class="col-sm-4 mt-3" id="c">
                         <div class="card mr-4" style="width:300px">
                                 <img class="card-img-top" src="ex1.jpg" alt="Card image" style="width:100%" height="270">
                                 <div class="card-body">
-                                  <h4 class="card-title ">ท่าบริหารลำตัว</h4>
+                                  <h3 class="card-title ">ท่าบริหารลำตัว</h3>
                                   <p class="card-text">ให้ยืนตัวตรงกางขาออกเล็กน้อย ตามอง ไปข้างหน้า มือเท้าเอว
                                         ค่อยๆบิดลำตัวช่วงบนไปด้านขวาให้มากที่สุดเท่าที่จะทำได้ โดยไม่บิดสะโพก
                                         จากนั้นให้ทำแบบเดียวกันไปทางด้านซ้าย
@@ -160,7 +289,7 @@
                         <div class="card ml-5" style="width:300px">
                                 <img class="card-img-top" src="ex2.png" alt="Card image" style="width:100%;" height="270">
                                 <div class="card-body">
-                                  <h4 class="card-title">ท่าบริหารข้อเท้า</h4>
+                                  <h3 class="card-title">ท่าบริหารข้อเท้า</h3>
                                   <p class="card-text mt-1 ">ตรงนี้ให้นั่งบนเก้าอี้ ให้ยกขาทีละข้าง เริ่มจากขาขวาก่อน
                                         ยกขึ้นจากพื้นและกระดกปลายเท้าเข้าหาตัว จากนั้นกระดกปลายเท้าลง ทำซ้ำกัน 10 ครั้ง</p>
                                         
@@ -172,7 +301,7 @@
                         <div class="card ml-5" style="width:300px">
                                 <img class="card-img-top " src="ex3.png" alt="Card image" style="width:100%" height="270">
                                 <div class="card-body">
-                                  <h4 class="card-title">ท่ายืนด้วยปลายเท้า</h4>
+                                  <h3 class="card-title">ท่ายืนด้วยปลายเท้า</h3>
                                   <p class="card-text">แบบไม่ใช้ราวจับ ยืดแขนขาความกว้างเท่าช่วงไหล่
                                         แฃ้วค่อยๆเขย่งปลายเท้าขึ้นจนสุด แล้วค่อยๆวางส้นเท้าลง ท่านี้ให้ทำซ้ำ 10 ครั้ง</p>
                                   <a href="#" class="btn btn-primary mb-4 mt-4">See More</a>
