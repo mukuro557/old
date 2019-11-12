@@ -5,20 +5,20 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
-   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
-   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
 
-   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.3.2/bootbox.min.js"></script>
-   <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-   <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-   <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-   <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.3.2/bootbox.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
 
     <title>Old Activity</title>
     <script>
@@ -33,7 +33,7 @@
                 $("#first").attr('disabled', true);
 
             });
-            
+
             var dataSet = [
                 {
                     "date": '2019-11-1',
@@ -70,9 +70,9 @@
                     "name": "วิ่งตามฝัน",
                     "organize": "สุรพง",
                     "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ บ้านซ้อ",
-                    
+
                 },
-                
+
             ];
 
             var table = $('#myTable').DataTable({
@@ -91,28 +91,34 @@
                     { "className": "dt-center", "targets": 3 }
                 ]
             });
-            
+
             // if (dat == ) {
             //     $("btn").attr("disabled",true);
             // }
             $('#myTable tbody').on('click', '.btn-success', function () {
-            var ans = dataSet.date;
-            //    butt=
-             $(this).attr("class", "btn btn-danger my-1")
-             $(this).text("ยกเลิก")
-             
-             
+                var ans = dataSet.date;
+                //    butt=
+                $(this).attr("class", "btn btn-danger my-1")
+                $(this).text("ยกเลิก")
+
+
             });
         });
     </script>
     <style>
+        .navbar {
+            background-color: darkslategrey;
+        }
+
         #logout {
             border: 2px solid red;
             color: red;
         }
 
-        h4 {
+        h3,
+        h5 {
             text-align: center;
+
         }
 
         #c {
@@ -123,16 +129,6 @@
             color: red;
         }
 
-        .carousel-caption h3 span {
-            background-color: black;
-            padding: 15px;
-        }
-
-        .carousel-caption p span {
-
-            background-color: black;
-            padding: 15px;
-        }
 
         .carousel-caption h3 {
             font-size: 40px;
@@ -142,13 +138,40 @@
             font-size: 30px;
         }
 
-        .carousel-caption {
-            position: absolute;
-            top: 40%;
-            left: 1.8%;
-            right: auto;
-            width: 96.66666666666666%;
-            color: #fff;
+        .modal-header,
+        h4,
+        .close {
+            background-color: #5cb85c;
+            color: white !important;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .modal-footer {
+            background-color: #f9f9f9;
+
+        }
+
+        .jumbotron {
+            margin-bottom: 0;
+            background-color: darkcyan;
+            height: 1000;
+            color: wheat;
+
+        }
+
+        .responsive {
+            width: 100%;
+            height: 500px;
+        }
+
+        input[type=text],
+        input[type=password] {
+            width: 100%;
+
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
         }
     </style>
 </head>
@@ -192,55 +215,56 @@
         </nav>
 
 
-    
+
 
 
         <table id="myTable" class="table table-striped table-bordered" style="width:100%">
         </table>
 
-        
-    
+
+
     </div>
     <div class="container-fluid">
-        <footer  style="background-color: #343a40">
-                <div class="container-fluid padding">
-                    <div class="row text-center text-light">
-                        <div class="col-md-4">
+        <footer style="background-color: #343a40">
+            <div class="container-fluid padding">
+                <div class="row text-center text-light">
+                    <div class="col-md-4">
                         <hr class="light">
                         <h5>ฉุกเฉิน</h5>
                         <hr class="light">
                         <div class="row">
-                                <div class="col-sm-12" id="d" >
-                                        <img src="support.png" alt="" width="30">
-                                           โทร: 091-2828333
-                                    </div>
-                                
+                            <div class="col-sm-12" id="d">
+                                <img src="support.png" alt="" width="30">
+                                โทร: 091-2828333
+                            </div>
+
 
                         </div>
-                        </div>
-                        <div class="col-md-4">
-                                <hr class="light">
-                                <h5>เกี่ยวกับเรา</h5>
-                                <hr class="light">
-                                <p class="mt-2">ศูนย์จัดเตรียมกิจกรรมมากมายเพื่อผู้สูงอายุ และข่าวประชาสัมพันธ์เรื่องสุขภาพเพื่อชีวิตที่ดีขึ้น</p>
-                                
-                                
-                            </div>
-                        
-                            
-                        
-                        <div class="col-md-4">
-                            <hr class="light">
-                            <h5>ติดต่อเรา</h5>
-                            <hr class="light">
-                            <p class="mt-1">Office: 02-222-0000</p>
-                            <p>Address:City, State, 00000</p>
-                            
-                        </div>
-                        
                     </div>
+                    <div class="col-md-4">
+                        <hr class="light">
+                        <h5>เกี่ยวกับเรา</h5>
+                        <hr class="light">
+                        <p class="mt-2">ศูนย์จัดเตรียมกิจกรรมมากมายเพื่อผู้สูงอายุ
+                            และข่าวประชาสัมพันธ์เรื่องสุขภาพเพื่อชีวิตที่ดีขึ้น</p>
+
+
+                    </div>
+
+
+
+                    <div class="col-md-4">
+                        <hr class="light">
+                        <h5>ติดต่อเรา</h5>
+                        <hr class="light">
+                        <p class="mt-1">Office: 02-222-0000</p>
+                        <p>Address:City, State, 00000</p>
+
+                    </div>
+
                 </div>
-            </footer>
+            </div>
+        </footer>
 
 </body>
 
