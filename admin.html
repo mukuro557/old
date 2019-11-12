@@ -1,273 +1,435 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.3.2/bootbox.min.js"></script>
+   <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+   <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+   <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+   <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
 
 
   <title>Document</title>
 
   <script>
-      $(document).ready(function () {
-        $("#submit").click(function () {
-          $("#myModal").modal();
-  
-  
-        });
-        
+    $(document).ready(function () {
+      $("#submit").click(function () {
+        $("#myModal").modal();
+
+
       });
-    </script>
+
+      $("#addcalender").click(function () {
+
+
+
+      });
+      $("#drop").click(function () {
+        $("#first").attr('disabled', true);
+
+      });
+
+      var dataSet = [
+        {
+          "date": "2019-11-1",
+          "name": "รับเบี้ยเลี้ยงผู้สูงอายุ",
+
+        },
+        {
+          "date": "2019-11-8",
+          "name": "รับถุงยังชีพพระราชทาน",
+
+        },
+       
+      ];
+
+      var table = $('#myTable').DataTable({
+        responsive: true,       //for responsive column display
+        deferRender: true,      //if large data, use this option
+        data: dataSet,
+        columns: [
+          { data: "date", title: "วันที่" },
+          { data: "name", title: "ข่าว" },
+          { title: "Action", orderable: false, defaultContent: "<button class='btn btn-danger my-1'>ลบ</button> <button class='btn btn-warning my-1'>แก้ไข</button>" }
+        ],
+        columnDefs: [
+          // make the last column align right, also target: "_all"
+          { "className": "dt-center", "targets": 2 }
+        ]
+      });
+      // Delete 
+      $('#myTable tbody').on('click', '.btn-danger', function () {
+        var gun = table.row($(this).parents('tr')).data();
+        // console.log(data.id);
+
+        gun.date = dataSet.splice;
+        gun.name = dataSet.splice;
+        $(this).parents("tr").remove();
+        // console.log(data);
+        // let id = $("#txtId").val();
+        // $( this ).parent("tr").remove();
+        // for (i = 0; i < dataSet.length; i++) {
+        //     if (dataSet[i].id == data["id"]) {
+        //         var delet = dataSet[i].id;
+        //         table.row($(this).parents('tr')).remove().draw(false);
+        //         break;
+        //     }
+
+      });
+
+      // Edit
+      $('#myTable tbody').on('click', '.btn-warning', function () {
+        // read data of the selected row
+        check = 1;
+        var data = table.row($(this).parents('tr')).data();
+
+        // show data in modal
+
+        $("#date").val(data.date);
+        $("#txtName").val(data.name);
+
+        // show modal
+        $("#modalEdit").modal("show");
+
+      });
+
+      // Edit and save
+      $("#btnSave").click(function () {
+        if (check == 1) {
+          let date = $("#date").data();
+          let name = $("#txtName").val();
+          console.log(date + " " + name + " " + organize + " " + info);
+
+          //search JS object array for "id"
+          for (var i = 0; i < dataSet.length; i++) {
+            if (dataSet[i].date == date) {
+              break;
+            }
+          }
+
+          //close modal
+          $("#modalEdit").modal('hide');
+          //get selected row and update value
+
+          let temp = table.row(i).data();
+          temp.date = date;
+          temp.name = name;
+
+          //update data table
+          table.row(i).data(temp).invalidate();
+        } else {
+          let date = $("#date").val();
+          let name = $("#txtName").val();
+          //  console.log(id+" "+name+" "+gender+" "+major+" "+school); 
+
+          //close modal
+          $("#modalEdit").modal('hide');
+          table.row.add({
+            "date": date,
+            "name": name
+
+          }).draw();
+        }
+
+
+      });
+      $("#add").click(function () {
+        check = 0;
+        $("#date").val("");
+        $("#txtName").val("");
+        $("#modalEdit").modal("show");
+
+      });
+
+
+    });
+  </script>
 
   <style>
-      .navbar {
-        background-color: darkslategrey;
-      }
-  
-      #logout {
-        border: 2px solid red;
-        color: red;
-      }
-  
-      h3,
-      h5 {
-        text-align: center;
-  
-      }
-  
-      #c {
-        text-align: center;
-      }
-  
-      #d {
-        color: red;
-      }
-  
-      .modal-header,
-      h4,
-      .close {
-        background-color: #5cb85c;
-        color: white !important;
-        text-align: center;
-        font-size: 30px;
-      }
-  
-      .modal-footer {
-        background-color: #f9f9f9;
-  
-      }
-      input[type=text], input[type=password] {
-    width: 100%;
-   
-    display: inline-block;
-    border: none;
-    background: #f1f1f1;
-  }
-  .card{
-    height: 90%;
-  }
-  .card-text{
-    font-size: 80%;
-  }
-  .img-top{
-    text-align: center;
-  }
-    </style>
+    .navbar {
+      background-color: darkslategrey;
+    }
+
+    #logout {
+      border: 2px solid red;
+      color: red;
+    }
+
+    h3,
+    h5 {
+      text-align: center;
+
+    }
+
+    #c {
+      text-align: center;
+    }
+
+    #d {
+      color: red;
+    }
+
+    .modal-header,
+    h4,
+    .close {
+      background-color: #5cb85c;
+      color: white !important;
+      text-align: center;
+      font-size: 30px;
+    }
+
+    .modal-footer {
+      background-color: #f9f9f9;
+
+    }
+
+    input[type=text],
+    input[type=password] {
+      width: 100%;
+
+      display: inline-block;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    .card {
+      height: 90%;
+    }
+
+    .card-text {
+      font-size: 80%;
+    }
+
+    .img-top {
+      text-align: center;
+    }
+  </style>
 </head>
+
 <body style="background-color: gainsboro;">
 
-    <div class="container-fluid ">
-        <!-- Navigation -->
-        <nav class="navbar navbar-expand-sm navbar-dark  ">
-          <a class="navbar-brand" href=""><img src="p.png" alt="profile" style="width: 40px;"></a>
-          <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
-            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <form class="form-inline">
-              <input class="form-control mr-sm-2" type="text" placeholder="ค้นหา">
-              <button class="btn btn-success" id="search">ค้นหา</button>
-            </form>
-    
-            <!-- Modal -->
-            <div class="modal fade" id="myModal" role="dialog">
-              <div class="modal-dialog">
-    
-                <!-- Modal content-->
-                <div class="modal-content">
-                  <div class="modal-header" style="padding:35px 50px;">
-                    <h4><span class="glyphicon glyphicon-lock"></span> เข้าสู่ระบบ</h4>
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
-    
-                  </div>
-                  <div class="modal-body" style="padding:40px 50px;">
-                    <form role="form">
-                      <div class="form-group">
-                        <label for="usrname"><span class="glyphicon glyphicon-user"></span>ชื่อ</label>
-                        <input type="text" class="form-control" id="usrname" placeholder="กรอกชื่อ">
-                      </div>
-                      <div class="form-group">
-                        <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> รหัสผ่าน</label>
-                        <input type="text" class="form-control" id="psw" placeholder="กรอกรหัสผ่าน">
-                      </div>
-                      <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span>
-                        เข้าสู่ระบบ</button>
-                      <button type="submit" class="btn btn-danger btn-block"><span
-                          class="glyphicon glyphicon-off "></span>ยกเลิก</button>
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <p>ไม่ใช่สมาชิก? <a href="#">ลงทะเบียน</a></p>
-    
-                    <p>ลืม <a href="#">รหัสผ่าน?</a></p>
-                  </div>
-                </div>
-    
-              </div>
-            </div>
-    
-            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-              <li class="nav-item active">
-                <a class="nav-link" href="#">หน้าหลัก <span class="sr-only">(current)</span></a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">กราฟกิจกรรม</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#">กิจกรรม</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#"></a>
-              </li>
-    
-            </ul>
-    
-            <button type="button" class="btn btn-danger mr-2" id="submit">ออกจากระบบ</button>
-    
-              </div>
-        </nav><br>
+  <div class="container-fluid ">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-sm navbar-dark  ">
+      <a class="navbar-brand" href=""><img src="p.png" alt="profile" style="width: 40px;"></a>
+      <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+        aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <form class="form-inline">
+          <input class="form-control mr-sm-2" type="text" placeholder="ค้นหา">
+          <button class="btn btn-success" id="search">ค้นหา</button>
+        </form>
 
-        <div class="container">
-        <div class="form-group" style="width: 50%;">
-              ข่าว
-            <textarea class="form-control mb-2" rows="3" id="news" placeholder="เขียนข่าว"></textarea>
-            <button  class="btn btn-success">โพสข่าว</button>
-            <button  class="btn btn-success">เพิ่มข่าว</button>
-        </div>
-        </div>  
-        <div class="container">
-            <div class="form-group" style="width: 50%;">
-                  สไลด์กิจกรรม
-                <textarea class="form-control mb-2" rows="2" id="activity" placeholder="กิจกรรม"></textarea>
-                <button  class="btn btn-success">โพส</button>
-                <button  class="btn btn-success">เปลี่ยนรูป</button>
-            </div>
-            </div>  
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">
 
-        
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header" style="padding:35px 50px;">
+                <h4><span class="glyphicon glyphicon-lock"></span> เข้าสู่ระบบ</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
 
-        <h3 class="mt-3">มุมสุขภาพ</h3>
-        <div class="container">
-          <div class="row">
-            <div class="col-sm-4 mt-3" id="c">
-              <div class="card   ml-2 mr-4 shadow p-3 mb-1 bg-white rounded" style="width:300px">
-                <img class="card-img-top mx-auto" src="ex1.jpg" alt="Card image" style="width:50%" height="100">
-                <div class="card-body">
-                  <h5 class="card-title ">ท่าบริหารลำตัว</h5>
-                  <p class="card-text">ให้ยืนตัวตรงกางขาออกเล็กน้อย ตามอง ไปข้างหน้า มือเท้าเอว
-                    ค่อยๆบิดลำตัวช่วงบนไปด้านขวาให้มากที่สุดเท่าที่จะทำได้ โดยไม่บิดสะโพก
-                    จากนั้นให้ทำแบบเดียวกันไปทางด้านซ้าย
-                    ทำซ้ำกัน 10 ครั้ง</p>
-                  <a href="#" class="btn btn-secondary"> แก้ไข </a>
-                  
-                </div>
               </div>
-    
-            </div>
-            <div class="col-sm-4 mt-3" id="c">
-              <div class="card   ml-2 shadow p-3 mb-4 bg-white rounded style=width:300px">
-                <img class="card-img-top mx-auto" src="ex2.png" alt="Card image" style="width:50%;" height="100">
-                <div class="card-body">
-                  <h5 class="card-title">ท่าบริหารข้อเท้า</h5>
-                  <p class="card-text  ">ตรงนี้ให้นั่งบนเก้าอี้ ให้ยกขาทีละข้าง เริ่มจากขาขวาก่อน
-                    ยกขึ้นจากพื้นและกระดกปลายเท้าเข้าหาตัว จากนั้นกระดกปลายเท้าลง ทำซ้ำกัน 10 ครั้ง</p>
-    
-                  <a href="#" class="btn btn-secondary mt-3"> แก้ไข </a>
-                  
-                </div>
+              <div class="modal-body" style="padding:40px 50px;">
+                <form role="form">
+                  <div class="form-group">
+                    <label for="usrname"><span class="glyphicon glyphicon-user"></span>ชื่อ</label>
+                    <input type="text" class="form-control" id="usrname" placeholder="กรอกชื่อ">
+                  </div>
+                  <div class="form-group">
+                    <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> รหัสผ่าน</label>
+                    <input type="text" class="form-control" id="psw" placeholder="กรอกรหัสผ่าน">
+                  </div>
+                  <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span>
+                    เข้าสู่ระบบ</button>
+                  <button type="submit" class="btn btn-danger btn-block"><span
+                      class="glyphicon glyphicon-off "></span>ยกเลิก</button>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <p>ไม่ใช่สมาชิก? <a href="#">ลงทะเบียน</a></p>
+
+                <p>ลืม <a href="#">รหัสผ่าน?</a></p>
               </div>
             </div>
-            <div class="col-sm-4 mt-3" id="c">
-              <div class="card   ml-5 shadow p-3 mb-5 bg-white rounded" style="width:300px">
-                <img class="card-img-top mx-auto " src="ex3.png" alt="Card image" style="width:50%" height="100">
-                <div class="card-body">
-                  <h5 class="card-title">ท่ายืนด้วยปลายเท้า</h5>
-                  <p class="card-text">แบบไม่ใช้ราวจับ ยืดแขนขาความกว้างเท่าช่วงไหล่
-                  แล้วค่อยๆเขย่งปลายเท้าขึ้นจนสุด แล้วค่อยๆวางส้นเท้าลง ท่านี้ให้ทำซ้ำ 10 ครั้ง</p>
-                  <a href="#" class="btn btn-secondary "> แก้ไข </a>
-                  
-                </div>
-              </div>
-    
-    
-    
-            </div>
-    
+
           </div>
-          
+        </div>
+
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">หน้าหลัก <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">กราฟกิจกรรม</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">กิจกรรม</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"></a>
+          </li>
+
+        </ul>
+
+        <button type="button" class="btn btn-danger mr-2" id="submit">ออกจากระบบ</button>
+
+      </div>
+    </nav>
+    <div class="container my-2 " style="background-color: white;">
+      <table id="myTable" class="table table-striped table-bordered " style="width:100%">
+      </table>
+
+      <!-- Modal -->
+      <div class="modal fade" id="modalEdit">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modelTitleId">Edit</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              <input type="date" class="form-control mb-1" id="date">
+              <input type="text" class="form-control mb-1" id="txtName" placeholder="ชื่อกิจกรรม">
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button id="btnSave" type="button" class="btn btn-primary">Save</button>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="container-fluid">
-          <footer style="background-color: darkslategray">
-            <div class="container-fluid padding">
-              <div class="row text-center text-light">
-                <div class="col-md-4">
-                  <hr class="light">
-                  <h5>ฉุกเฉิน</h5>
-                  <hr class="light">
-                  <div class="row">
-                    <div class="col-sm-12" id="d">
-                      <img src="support.png" alt="" width="30" >
-                                                 โทร: 091-2828333
-                                          </div>
-                                      
-      
-                              </div>
-                              </div>
-                              <div class=" col-md-4">
-                      <hr class="light">
-                      <h5>เกี่ยวกับเรา</h5>
-                      <hr class="light">
-                      <p class="mt-2">ศูนย์จัดเตรียมกิจกรรมมากมายเพื่อผู้สูงอายุ
-                        และข่าวประชาสัมพันธ์เรื่องสุขภาพเพื่อชีวิตที่ดีขึ้น</p>
-      
-      
-                    </div>
-      
-      
-      
-                    <div class="col-md-4">
-                      <hr class="light">
-                      <h5>ติดต่อเรา</h5>
-                      <hr class="light">
-                      <p class="mt-1">Office: 02-222-0000</p>
-                      <p>Address:City, State, 00000</p>
-      
-                    </div>
-      
-                  </div>
-                </div>
-          </footer>
-      
-        </div>
-        <!-- new -->
+    </div>
 
+    <div class="container">
     
-  
+    <div class="container">
+      <div class="form-group" style="width: 50%;">
+        สไลด์กิจกรรม
+        <textarea class="form-control mb-2" rows="2" id="activity" placeholder="กิจกรรม"></textarea>
+        <button class="btn btn-success">โพส</button>
+        <button class="btn btn-success">เปลี่ยนรูป</button>
+      </div>
+    </div>
+
+
+
+    <h3 class="mt-3">มุมสุขภาพ</h3>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 mt-3" id="c">
+          <div class="card   ml-2 mr-4 shadow p-3 mb-1 bg-white rounded" style="width:300px">
+            <img class="card-img-top mx-auto" src="ex1.jpg" alt="Card image" style="width:50%" height="100">
+            <div class="card-body">
+              <h5 class="card-title ">ท่าบริหารลำตัว</h5>
+              <p class="card-text">ให้ยืนตัวตรงกางขาออกเล็กน้อย ตามอง ไปข้างหน้า มือเท้าเอว
+                ค่อยๆบิดลำตัวช่วงบนไปด้านขวาให้มากที่สุดเท่าที่จะทำได้ โดยไม่บิดสะโพก
+                จากนั้นให้ทำแบบเดียวกันไปทางด้านซ้าย
+                ทำซ้ำกัน 10 ครั้ง</p>
+              <a href="#" class="btn btn-secondary"> แก้ไข </a>
+
+            </div>
+          </div>
+
+        </div>
+        <div class="col-sm-4 mt-3" id="c">
+          <div class="card   ml-2 shadow p-3 mb-4 bg-white rounded style=width:300px">
+            <img class="card-img-top mx-auto" src="ex2.png" alt="Card image" style="width:50%;" height="100">
+            <div class="card-body">
+              <h5 class="card-title">ท่าบริหารข้อเท้า</h5>
+              <p class="card-text  ">ตรงนี้ให้นั่งบนเก้าอี้ ให้ยกขาทีละข้าง เริ่มจากขาขวาก่อน
+                ยกขึ้นจากพื้นและกระดกปลายเท้าเข้าหาตัว จากนั้นกระดกปลายเท้าลง ทำซ้ำกัน 10 ครั้ง</p>
+
+              <a href="#" class="btn btn-secondary mt-3"> แก้ไข </a>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 mt-3" id="c">
+          <div class="card   ml-5 shadow p-3 mb-5 bg-white rounded" style="width:300px">
+            <img class="card-img-top mx-auto " src="ex3.png" alt="Card image" style="width:50%" height="100">
+            <div class="card-body">
+              <h5 class="card-title">ท่ายืนด้วยปลายเท้า</h5>
+              <p class="card-text">แบบไม่ใช้ราวจับ ยืดแขนขาความกว้างเท่าช่วงไหล่
+                แล้วค่อยๆเขย่งปลายเท้าขึ้นจนสุด แล้วค่อยๆวางส้นเท้าลง ท่านี้ให้ทำซ้ำ 10 ครั้ง</p>
+              <a href="#" class="btn btn-secondary "> แก้ไข </a>
+
+            </div>
+          </div>
+
+
+
+        </div>
+
+      </div>
+
+    </div>
+  </div>
+  <div class="container-fluid">
+    <footer style="background-color: darkslategray">
+      <div class="container-fluid padding">
+        <div class="row text-center text-light">
+          <div class="col-md-4">
+            <hr class="light">
+            <h5>ฉุกเฉิน</h5>
+            <hr class="light">
+            <div class="row">
+              <div class="col-sm-12" id="d">
+                <img src="support.png" alt="" width="30">
+                โทร: 091-2828333
+              </div>
+
+
+            </div>
+          </div>
+          <div class=" col-md-4">
+            <hr class="light">
+            <h5>เกี่ยวกับเรา</h5>
+            <hr class="light">
+            <p class="mt-2">ศูนย์จัดเตรียมกิจกรรมมากมายเพื่อผู้สูงอายุ
+              และข่าวประชาสัมพันธ์เรื่องสุขภาพเพื่อชีวิตที่ดีขึ้น</p>
+
+
+          </div>
+
+
+
+          <div class="col-md-4">
+            <hr class="light">
+            <h5>ติดต่อเรา</h5>
+            <hr class="light">
+            <p class="mt-1">Office: 02-222-0000</p>
+            <p>Address:City, State, 00000</p>
+
+          </div>
+
+        </div>
+      </div>
+    </footer>
+
+  </div>
+  <!-- new -->
+
+
+
 </body>
+
 </html>
