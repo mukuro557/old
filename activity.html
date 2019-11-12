@@ -179,8 +179,8 @@
 <body>
     <div class="container">
 
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark mb-3">
-            <a class="navbar-brand" href="#">logo</a>
+        <nav class="navbar navbar-expand-sm navbar-dark  ">
+            <a class="navbar-brand" href=""><img src="p.png" alt="profile" style="width: 40px;"></a>
             <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
                 data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -189,9 +189,47 @@
             <div class="collapse navbar-collapse" id="collapsibleNavId">
                 <form class="form-inline">
                     <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                    <button class="btn btn-success" type="submit">ค้นหา</button>
+                    <button class="btn btn-success" id="search">ค้นหา</button>
                 </form>
 
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding:35px 50px;">
+                                <h4><span class="glyphicon glyphicon-lock"></span> เข้าสู่ระบบ</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                            </div>
+                            <div class="modal-body" style="padding:40px 50px;">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="usrname"><span class="glyphicon glyphicon-user"></span>ชื่อ</label>
+                                        <input type="text" class="form-control" id="usrname" placeholder="กรอกชื่อ">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="psw"><span class="glyphicon glyphicon-eye-open"></span>
+                                            รหัสผ่าน</label>
+                                        <input type="text" class="form-control" id="psw" placeholder="กรอกรหัสผ่าน">
+                                    </div>
+                                    <button type="submit" class="btn btn-success btn-block"><span
+                                            class="glyphicon glyphicon-off"></span>
+                                        เข้าสู่ระบบ</button>
+                                    <button type="submit" class="btn btn-danger btn-block"><span
+                                            class="glyphicon glyphicon-off "></span>ยกเลิก</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <p>ไม่ใช่สมาชิก? <a href="#">ลงทะเบียน</a></p>
+
+                                <p>ลืม <a href="#">รหัสผ่าน?</a></p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
 
                 <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
                     <li class="nav-item active">
@@ -208,8 +246,8 @@
                     </li>
 
                 </ul>
-                <button class="btn btn-danger">ออกจากระบบ</button>
 
+                <button type="button" class="btn btn-success mr-2" id="submit">เข้าสู่ระบบ</button>
 
             </div>
         </nav>
@@ -225,46 +263,48 @@
 
     </div>
     <div class="container-fluid">
-        <footer style="background-color: #343a40">
-            <div class="container-fluid padding">
+            <footer style="background-color: darkslategray">
+              <div class="container-fluid padding">
                 <div class="row text-center text-light">
-                    <div class="col-md-4">
-                        <hr class="light">
-                        <h5>ฉุกเฉิน</h5>
-                        <hr class="light">
-                        <div class="row">
-                            <div class="col-sm-12" id="d">
-                                <img src="support.png" alt="" width="30">
-                                โทร: 091-2828333
-                            </div>
-
-
-                        </div>
-                    </div>
-                    <div class="col-md-4">
+                  <div class="col-md-4">
+                    <hr class="light">
+                    <h5>ฉุกเฉิน</h5>
+                    <hr class="light">
+                    <div class="row">
+                      <div class="col-sm-12" id="d">
+                        <img src="support.png" alt="" width="30" >
+                                                   โทร: 091-2828333
+                                            </div>
+                                        
+        
+                                </div>
+                                </div>
+                                <div class=" col-md-4">
                         <hr class="light">
                         <h5>เกี่ยวกับเรา</h5>
                         <hr class="light">
                         <p class="mt-2">ศูนย์จัดเตรียมกิจกรรมมากมายเพื่อผู้สูงอายุ
-                            และข่าวประชาสัมพันธ์เรื่องสุขภาพเพื่อชีวิตที่ดีขึ้น</p>
-
-
-                    </div>
-
-
-
-                    <div class="col-md-4">
+                          และข่าวประชาสัมพันธ์เรื่องสุขภาพเพื่อชีวิตที่ดีขึ้น</p>
+        
+        
+                      </div>
+        
+        
+        
+                      <div class="col-md-4">
                         <hr class="light">
                         <h5>ติดต่อเรา</h5>
                         <hr class="light">
                         <p class="mt-1">Office: 02-222-0000</p>
                         <p>Address:City, State, 00000</p>
-
+        
+                      </div>
+        
                     </div>
-
-                </div>
-            </div>
-        </footer>
+                  </div>
+            </footer>
+        
+          </div>
 
 </body>
 
