@@ -13,84 +13,150 @@
     <title>Document</title>
 </head>
 <style>
-    #logout {
-        border: 2px solid red;
-        color:red;
-    }
+        .navbar {
+            background-color: darkslategrey;
+        }
 
-    h4 {
-        text-align: center;
-    }
-    #c{
-        text-align: center;
-    }
-   
-    #d{
-        color: red;
-    }
-    .carousel-caption h3  span{
-        background-color: black;
-        padding: 15px;
-    }
-    .carousel-caption p span {
-        
-        background-color:black;
-        padding: 15px;
-    }
-    .carousel-caption h3 {
-        font-size: 40px;
-    }
-    .carousel-caption p {
-        font-size: 30px;
-    }
-    .carousel-caption {
-position: absolute;
-top: 40%;
-left: 1.8%;
-right: auto;
-width: 96.66666666666666%;
-color: #fff;
-    }
-    
-  
-</style>
+        #logout {
+            border: 2px solid red;
+            color: red;
+        }
+
+        h3,
+        h5 {
+            text-align: center;
+
+        }
+
+        #c {
+            text-align: center;
+        }
+
+        #d {
+            color: red;
+        }
+
+
+        .carousel-caption h3 {
+            font-size: 40px;
+        }
+
+        .carousel-caption p {
+            font-size: 30px;
+        }
+
+        .modal-header,
+        h4,
+        .close {
+            background-color: #5cb85c;
+            color: white !important;
+            text-align: center;
+            font-size: 30px;
+        }
+
+        .modal-footer {
+            background-color: #f9f9f9;
+
+        }
+
+        .jumbotron {
+            margin-bottom: 0;
+            background-color: darkcyan;
+            height: 1000;
+            color: wheat;
+
+        }
+
+        .responsive {
+            width: 100%;
+            height: 500px;
+        }
+
+        input[type=text],
+        input[type=password] {
+            width: 100%;
+
+            display: inline-block;
+            border: none;
+            background: #f1f1f1;
+        }
+    </style>
 <body style="background-color: gainsboro;">
-    <div class="container">
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">logo</a>
-            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
-                data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="collapsibleNavId">
-                    <form class="form-inline">
-                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                        <button class="btn btn-success" type="submit">ค้นหา</button>
-                        <button type="button" class="btn btn-success ml-2" type="submit">เข้าสู่ระบบ</button>
-                      </form>
-                            
-
-                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="">หน้าหลัก <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">ข้อมูลผู้สูงอายุ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="">กิจกรรม</a>
-                    </li>
-                    <li class="nav-item">
-                            <a class="nav-link" href="#"></a>
-                        </li>
-                        
-                   
-                </ul>
-                <button class="btn btn-danger">ออกจากระบบ</button>
-            </div>
-        </nav>
-        <div class="row mt-2 " >
+    <div class="container-fluid">
+            <nav class="navbar navbar-expand-sm navbar-dark  ">
+                    <a class="navbar-brand" href=""><img src="p.png" alt="profile" style="width: 40px;"></a>
+                    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                        data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                        aria-label="Toggle navigation">
+                        <span class="navbar-toggler-icon"></span>
+                    </button>
+                    <div class="collapse navbar-collapse" id="collapsibleNavId">
+                        <form class="form-inline">
+                            <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                            <button class="btn btn-success" id="search">ค้นหา</button>
+                        </form>
+        
+                        <!-- Modal -->
+                        <div class="modal fade" id="myModal" role="dialog">
+                            <div class="modal-dialog">
+        
+                                <!-- Modal content-->
+                                <div class="modal-content">
+                                    <div class="modal-header" style="padding:35px 50px;">
+                                        <h4><span class="glyphicon glyphicon-lock"></span> เข้าสู่ระบบ</h4>
+                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+        
+                                    </div>
+                                    <div class="modal-body" style="padding:40px 50px;">
+                                        <form role="form">
+                                            <div class="form-group">
+                                                <label for="usrname"><span class="glyphicon glyphicon-user"></span>ชื่อ</label>
+                                                <input type="text" class="form-control" id="usrname" placeholder="กรอกชื่อ">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="psw"><span class="glyphicon glyphicon-eye-open"></span>
+                                                    รหัสผ่าน</label>
+                                                <input type="text" class="form-control" id="psw" placeholder="กรอกรหัสผ่าน">
+                                            </div>
+                                            <button type="submit" class="btn btn-success btn-block"><span
+                                                    class="glyphicon glyphicon-off"></span>
+                                                เข้าสู่ระบบ</button>
+                                            <button type="submit" class="btn btn-danger btn-block"><span
+                                                    class="glyphicon glyphicon-off "></span>ยกเลิก</button>
+                                        </form>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <p>ไม่ใช่สมาชิก? <a href="#">ลงทะเบียน</a></p>
+        
+                                        <p>ลืม <a href="#">รหัสผ่าน?</a></p>
+                                    </div>
+                                </div>
+        
+                            </div>
+                        </div>
+        
+                        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                            <li class="nav-item active">
+                                <a class="nav-link" href="#">หน้าหลัก <span class="sr-only">(current)</span></a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">ข้อมูลผู้สูงอายุ</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#">กิจกรรม</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" href="#"></a>
+                            </li>
+        
+                        </ul>
+        
+                        <button type="button" class="btn btn-success mr-2" id="submit">เข้าสู่ระบบ</button>
+        
+                    </div>
+                </nav>
+        <div class="container">
+            <div class="row my-2 " >
             <div class="col-sm-3"></div>
             <div class="col-sm-6 cardim"  >
                 <div class="border " style="text-align: center;background-color: white;"  >
@@ -107,6 +173,8 @@ color: #fff;
             </div>
 
         </div>
+        </div>
+        
     </div>
     <div class="container-fluid">
         <footer  style="background-color: #343a40">
