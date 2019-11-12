@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -13,210 +14,214 @@
     <title>Document</title>
 </head>
 <style>
-        .navbar {
-            background-color: darkslategrey;
-        }
+    .navbar {
+        background-color: darkslategrey;
+    }
 
-        #logout {
-            border: 2px solid red;
-            color: red;
-        }
+    #logout {
+        border: 2px solid red;
+        color: red;
+    }
 
-        h3,
-        h5 {
-            text-align: center;
+    h3,
+    h5 {
+        text-align: center;
 
-        }
+    }
 
-        #c {
-            text-align: center;
-        }
+    #c {
+        text-align: center;
+    }
 
-        #d {
-            color: red;
-        }
+    #d {
+        color: red;
+    }
 
 
-        .carousel-caption h3 {
-            font-size: 40px;
-        }
+    .carousel-caption h3 {
+        font-size: 40px;
+    }
 
-        .carousel-caption p {
-            font-size: 30px;
-        }
+    .carousel-caption p {
+        font-size: 30px;
+    }
 
-        .modal-header,
-        h4,
-        .close {
-            background-color: #5cb85c;
-            color: white !important;
-            text-align: center;
-            font-size: 30px;
-        }
+    .modal-header,
+    h4,
+    .close {
+        background-color: #5cb85c;
+        color: white !important;
+        text-align: center;
+        font-size: 30px;
+    }
 
-        .modal-footer {
-            background-color: #f9f9f9;
+    .modal-footer {
+        background-color: #f9f9f9;
 
-        }
+    }
 
-        .jumbotron {
-            margin-bottom: 0;
-            background-color: darkcyan;
-            height: 1000;
-            color: wheat;
+    .jumbotron {
+        margin-bottom: 0;
+        background-color: darkcyan;
+        height: 1000;
+        color: wheat;
 
-        }
+    }
 
-        .responsive {
-            width: 100%;
-            height: 500px;
-        }
+    .responsive {
+        width: 100%;
+        height: 500px;
+    }
 
-        input[type=text],
-        input[type=password] {
-            width: 100%;
+    input[type=text],
+    input[type=password] {
+        width: 100%;
 
-            display: inline-block;
-            border: none;
-            background: #f1f1f1;
-        }
-    </style>
+        display: inline-block;
+        border: none;
+        background: #f1f1f1;
+    }
+</style>
+
 <body style="background-color: gainsboro;">
     <div class="container-fluid">
-            <nav class="navbar navbar-expand-sm navbar-dark  ">
-                    <a class="navbar-brand" href=""><img src="p.png" alt="profile" style="width: 40px;"></a>
-                    <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
-                        data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
-                        aria-label="Toggle navigation">
-                        <span class="navbar-toggler-icon"></span>
-                    </button>
-                    <div class="collapse navbar-collapse" id="collapsibleNavId">
-                        <form class="form-inline">
-                            <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                            <button class="btn btn-success" id="search">ค้นหา</button>
-                        </form>
-        
-                        <!-- Modal -->
-                        <div class="modal fade" id="myModal" role="dialog">
-                            <div class="modal-dialog">
-        
-                                <!-- Modal content-->
-                                <div class="modal-content">
-                                    <div class="modal-header" style="padding:35px 50px;">
-                                        <h4><span class="glyphicon glyphicon-lock"></span> เข้าสู่ระบบ</h4>
-                                        <button type="button" class="close" data-dismiss="modal">&times;</button>
-        
+        <nav class="navbar navbar-expand-sm navbar-dark  ">
+            <a class="navbar-brand" href=""><img src="p.png" alt="profile" style="width: 40px;"></a>
+            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="collapsibleNavId">
+                <form class="form-inline">
+                    <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                    <button class="btn btn-success" id="search">ค้นหา</button>
+                </form>
+
+                <!-- Modal -->
+                <div class="modal fade" id="myModal" role="dialog">
+                    <div class="modal-dialog">
+
+                        <!-- Modal content-->
+                        <div class="modal-content">
+                            <div class="modal-header" style="padding:35px 50px;">
+                                <h4><span class="glyphicon glyphicon-lock"></span> เข้าสู่ระบบ</h4>
+                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+                            </div>
+                            <div class="modal-body" style="padding:40px 50px;">
+                                <form role="form">
+                                    <div class="form-group">
+                                        <label for="usrname"><span class="glyphicon glyphicon-user"></span>ชื่อ</label>
+                                        <input type="text" class="form-control" id="usrname" placeholder="กรอกชื่อ">
                                     </div>
-                                    <div class="modal-body" style="padding:40px 50px;">
-                                        <form role="form">
-                                            <div class="form-group">
-                                                <label for="usrname"><span class="glyphicon glyphicon-user"></span>ชื่อ</label>
-                                                <input type="text" class="form-control" id="usrname" placeholder="กรอกชื่อ">
-                                            </div>
-                                            <div class="form-group">
-                                                <label for="psw"><span class="glyphicon glyphicon-eye-open"></span>
-                                                    รหัสผ่าน</label>
-                                                <input type="text" class="form-control" id="psw" placeholder="กรอกรหัสผ่าน">
-                                            </div>
-                                            <button type="submit" class="btn btn-success btn-block"><span
-                                                    class="glyphicon glyphicon-off"></span>
-                                                เข้าสู่ระบบ</button>
-                                            <button type="submit" class="btn btn-danger btn-block"><span
-                                                    class="glyphicon glyphicon-off "></span>ยกเลิก</button>
-                                        </form>
+                                    <div class="form-group">
+                                        <label for="psw"><span class="glyphicon glyphicon-eye-open"></span>
+                                            รหัสผ่าน</label>
+                                        <input type="text" class="form-control" id="psw" placeholder="กรอกรหัสผ่าน">
                                     </div>
-                                    <div class="modal-footer">
-                                        <p>ไม่ใช่สมาชิก? <a href="#">ลงทะเบียน</a></p>
-        
-                                        <p>ลืม <a href="#">รหัสผ่าน?</a></p>
-                                    </div>
-                                </div>
-        
+                                    <button type="submit" class="btn btn-success btn-block"><span
+                                            class="glyphicon glyphicon-off"></span>
+                                        เข้าสู่ระบบ</button>
+                                    <button type="submit" class="btn btn-danger btn-block"><span
+                                            class="glyphicon glyphicon-off "></span>ยกเลิก</button>
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <p>ไม่ใช่สมาชิก? <a href="#">ลงทะเบียน</a></p>
+
+                                <p>ลืม <a href="#">รหัสผ่าน?</a></p>
                             </div>
                         </div>
-        
-                        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                            <li class="nav-item active">
-                                <a class="nav-link" href="#">หน้าหลัก <span class="sr-only">(current)</span></a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">ข้อมูลผู้สูงอายุ</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#">กิจกรรม</a>
-                            </li>
-                            <li class="nav-item">
-                                <a class="nav-link" href="#"></a>
-                            </li>
-        
-                        </ul>
-        
-                        <button type="button" class="btn btn-success mr-2" id="submit">เข้าสู่ระบบ</button>
-        
-                    </div>
-                </nav>
-        <div class="container">
-            <div class="row my-2 " >
-            <div class="col-sm-3"></div>
-            <div class="col-sm-6 cardim"  >
-                <div class="border " style="text-align: center;background-color: white;"  >
-                    <img class="card-img-top " style="width: 50%; text-align: center;" src="frame.png">
-                    <div class="card-body">
-                        <h5 class="card-text">นายสมชาย มั่งมี
-                                บ้าน ใหม่ดอนงาม อ.ดอยหลวง จ.เชียงราย 0805698745</h5> <br>
-                                <a href="">Edit</a> 
-                               <button>Print</button>
-                           
+
                     </div>
                 </div>
 
-            </div>
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">หน้าหลัก <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">ข้อมูลผู้สูงอายุ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">กิจกรรม</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
 
+                </ul>
+
+                <button type="button" class="btn btn-success mr-2" id="submit">เข้าสู่ระบบ</button>
+
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row my-2 ">
+                <div class="col-sm-3"></div>
+                <div class="col-sm-6 cardim">
+                    <div class="border " style="text-align: center;background-color: white;">
+                        <img class="card-img-top " style="width: 50%; text-align: center;" src="frame.png">
+                        <div class="card-body">
+                            <h5 class="card-text">นายสมชาย มั่งมี
+                                บ้าน ใหม่ดอนงาม อ.ดอยหลวง จ.เชียงราย 0805698745</h5> <br>
+                            <a href="">Edit</a>
+                            <button>Print</button>
+
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
         </div>
-        </div>
-        
+
     </div>
     <div class="container-fluid">
-        <footer  style="background-color: #343a40">
-                <div class="container-fluid padding">
-                    <div class="row text-center text-light">
-                        <div class="col-md-4">
+        <footer style="background-color: darkslategray">
+            <div class="container-fluid padding">
+                <div class="row text-center text-light">
+                    <div class="col-md-4">
                         <hr class="light">
                         <h5>ฉุกเฉิน</h5>
                         <hr class="light">
                         <div class="row">
-                                <div class="col-sm-12" id="d" >
-                                        <img src="support.png" alt="" width="30" ">
-                                           โทร: 091-2828333
-                                    </div>
-                                
-
-                        </div>
-                        </div>
-                        <div class="col-md-4">
-                                <hr class="light">
-                                <h5>เกี่ยวกับเรา</h5>
-                                <hr class="light">
-                                <p class="mt-2">ศูนย์จัดเตรียมกิจกรรมมากมายเพื่อผู้สูงอายุ และข่าวประชาสัมพันธ์เรื่องสุขภาพเพื่อชีวิตที่ดีขึ้น</p>
-                                
-                                
+                            <div class="col-sm-12" id="d">
+                                <img src="support.png" alt="" width="30">
+                                โทร: 091-2828333
                             </div>
-                        
-                            
-                        
-                        <div class="col-md-4">
-                            <hr class="light">
-                            <h5>ติดต่อเรา</h5>
-                            <hr class="light">
-                            <p class="mt-1">Office: 02-222-0000</p>
-                            <p>Address:City, State, 00000</p>
-                            
-                        </div>
-                        
-                    </div>
-                </div>
-            </footer>
 
-</div>
+
+                        </div>
+                    </div>
+                    <div class=" col-md-4">
+                        <hr class="light">
+                        <h5>เกี่ยวกับเรา</h5>
+                        <hr class="light">
+                        <p class="mt-2">ศูนย์จัดเตรียมกิจกรรมมากมายเพื่อผู้สูงอายุ
+                            และข่าวประชาสัมพันธ์เรื่องสุขภาพเพื่อชีวิตที่ดีขึ้น</p>
+
+
+                    </div>
+
+
+
+                    <div class="col-md-4">
+                        <hr class="light">
+                        <h5>ติดต่อเรา</h5>
+                        <hr class="light">
+                        <p class="mt-1">Office: 02-222-0000</p>
+                        <p>Address:City, State, 00000</p>
+
+                    </div>
+
+                </div>
+            </div>
+        </footer>
+
+
+    </div>
 </body>
+
 </html>
