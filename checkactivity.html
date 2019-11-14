@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+     <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+ 
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+     <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.3.2/bootbox.min.js"></script>
+     <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+     <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+     <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+     <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+    <title>Document</title>
+    <script>
+        $(document).ready(function () {
+
+            var dataSet = [
+                {
+                    "date": "2019-11-1",
+                    "name": "นางพัน มานา",
+                },
+                {
+                    "date": "2019-11-1",
+                    "name": "นางสารวิน ขาวยน",
+                },
+                {
+                    "date": "2019-11-1",
+                    "name": "นางสาวยุพิณ สีใส",
+                },
+                {
+                    "date": '2019-11-1',
+                    "name": "นายสุภกิจ สนใจ",
+                },
+                {
+                    "date": "2019-11-1",
+                    "name": "นายสุรชัย จันเบง",
+                },
+                {
+                    "date": "2019-11-1",
+                    "name": "นายเอกภพ ท่าสา",  
+                },
+                
+
+            ];
+
+            var table = $('#myTable').DataTable({
+                responsive: true,       //for responsive column display
+                deferRender: true,      //if large data, use this option
+                data: dataSet,
+                columns: [
+                    { data: "date", title: "วันที่" },
+                    { data: "name", title: "ชื่อ" },
+                    { title: "Action", orderable: false, defaultContent: "<input type = 'checkbox' class='check'  >ได้เข้าร่วม</button>" }
+                ],
+                columnDefs: [
+                    // make the last column align right, also target: "_all"
+                    { "className": "dt-center", "targets": 2 }
+                ]
+                
+            });
+            $("#save").click(function () { 
+                $(".check").attr('disabled', true)
+                
+            });
+            $("#edit").click(function () { 
+                $(".check").attr('disabled', false)
+                
+            });
+            
+        });
+    </script>
+    <style>
+            .navbar {
+                background-color: darkslategrey;
+            }
+    
+            #logout {
+                border: 2px solid red;
+                color: red;
+            }
+    
+            h3,
+            h5 {
+                text-align: center;
+    
+            }
+    
+            #c {
+                text-align: center;
+            }
+    
+            #d {
+                color: red;
+            }
+    
+    
+            .carousel-caption h3 {
+                font-size: 40px;
+            }
+    
+            .carousel-caption p {
+                font-size: 30px;
+            }
+    
+            .modal-header,
+            h4,
+            .close {
+                background-color: #5cb85c;
+                color: white !important;
+                text-align: center;
+                font-size: 30px;
+            }
+    
+            .modal-footer {
+                background-color: #f9f9f9;
+    
+            }
+    
+            .jumbotron {
+                margin-bottom: 0;
+                background-color: darkcyan;
+                height: 1000;
+                color: wheat;
+    
+            }
+    
+            .responsive {
+                width: 100%;
+                height: 500px;
+            }
+    
+            input[type=text],
+            input[type=password] {
+                width: 100%;
+    
+                display: inline-block;
+                border: none;
+                background: #f1f1f1;
+            }
+        </style>
+</head>
+<body>
+    <div class="container my-2 " style="background-color: white;">
+        <table id="myTable" class="table table-striped table-bordered " style="width:100%">
+           </table>
+           <div class="row my-2">
+           <div class="col-sm-11" style="text-align: right;"> 
+            <button class="btn btn-dark " id="edit">แก้ไข</button>
+        </div>
+           <div class="col-sm-1" style="text-align: left;">
+               <button class="btn btn-success" id="save">บันทึก</button>
+            </div>
+           </div>
+   </div>
+</body>
+</html>
