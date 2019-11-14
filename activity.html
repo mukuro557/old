@@ -24,11 +24,6 @@
     <script>
         $(document).ready(function () {
 
-            $("#addcalender").click(function () {
-
-
-
-            });
             $("#drop").click(function () {
                 $("#first").attr('disabled', true);
 
@@ -90,7 +85,10 @@
                     // make the last column align right, also target: "_all"
                     { "className": "dt-center", "targets": 3 }
                 ]
+                
             });
+            var table = $('#myTable').DataTable();
+            // table.buttons( [1, '1'] ).attr("class","btn btn-primary my-1" );
 
             // if (dat == ) {
             //     $("btn").attr("disabled",true);
@@ -100,6 +98,14 @@
                 //    butt=
                 $(this).attr("class", "btn btn-danger my-1")
                 $(this).text("ยกเลิก")
+
+
+            });
+            $('#myTable tbody').on('click', '.btn-danger', function () {
+                var ans = dataSet.date;
+                //    butt=
+                $(this).attr("class", "btn btn-success my-1")
+                $(this).text("เข้าร่วม")
 
 
             });
