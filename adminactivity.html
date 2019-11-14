@@ -84,7 +84,7 @@
                     { data: "name", title: "กิจกรรม" },
                     { data: "organize", title: "ผู้จัดงาน" },
                     { data: "info", title: "รายละเอียด" },
-                    { title: "Action", orderable: false, defaultContent: "<button class='btn btn-danger my-1'>ลบ</button> <button class='btn btn-warning my-1'>แก้ไข</button>" }
+                    { title: "Action", orderable: false, defaultContent: "<button class='btn btn-danger my-1'>ปิดกิจกรรม</button> <button class='btn btn-warning my-1'>แก้ไข</button>" }
                 ],
                 columnDefs: [
                     // make the last column align right, also target: "_all"
@@ -93,23 +93,7 @@
             });
             // Delete 
             $('#myTable tbody').on('click', '.btn-danger', function () {
-                var gun = table.row($(this).parents('tr')).data();
-                // console.log(data.id);
-
-                gun.date = dataSet.splice;
-                gun.name = dataSet.splice;
-                gun.organize = dataSet.splice;
-                gun.info = dataSet.splice;
-                $(this).parents("tr").remove();
-                // console.log(data);
-                // let id = $("#txtId").val();
-                // $( this ).parent("tr").remove();
-                // for (i = 0; i < dataSet.length; i++) {
-                //     if (dataSet[i].id == data["id"]) {
-                //         var delet = dataSet[i].id;
-                //         table.row($(this).parents('tr')).remove().draw(false);
-                //         break;
-                //     }
+                $(".btn-danger").val("ยกเลิก");
 
             });
 
