@@ -2,95 +2,75 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
-    <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+   <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://cdn.datatables.net/1.10.20/css/dataTables.bootstrap4.min.css">
+   <link rel="stylesheet" href="https://cdn.datatables.net/responsive/2.2.3/css/responsive.bootstrap4.min.css">
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.3.2/bootbox.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
-    <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
-    <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+   <!-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/js/bootstrap.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/5.3.2/bootbox.min.js"></script>
+   <script src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>
+   <script src="https://cdn.datatables.net/1.10.20/js/dataTables.bootstrap4.min.js"></script>
+   <script src="https://cdn.datatables.net/responsive/2.2.3/js/dataTables.responsive.min.js"></script>
+   <script src="https://cdn.datatables.net/responsive/2.2.3/js/responsive.bootstrap4.min.js"></script>
 
-    <title>Document</title>
-    <script>
-        $(document).ready(function () {
-           $("#login").click(function(){
-            
-            $(".modal-title").html("Hello");
-            $(".modal-body").html("Im a modal");
-        
 
-           });
-           $("#addcalender").click(function () {
-      
-      
-      
-    });
-    $("#drop").click(function () {
+  <title>Document</title>
+
+  <script>
+    $(document).ready(function () {
+      $("#submit").click(function () {
+        $("#myModal").modal();
+
+
+      });
+
+      $("#addcalender").click(function () {
+
+
+
+      });
+      $("#drop").click(function () {
         $("#first").attr('disabled', true);
 
-    });
+      });
 
-    var dataSet = [
+      var dataSet = [
         {
-            "date": "2019-11-1",
-            "name": "วิ่งเพื่อสุขภาพ",
-            
-        },
-        {
-            "date": "2019-11-8",
-            "name": "โรงเรียนผู้สูงอายุ",
-            
-        },
-        {
-            "date": "2019-11-15",
-            "name": "มินิมาราทอนผู้สูงอายุ",
-            
-        },
-        {
-            "date": "2019-11-20",
-            "name": "ปลูกป่า",
-           
-        },
-        {
-            "date": "2019-11-24",
-            "name": "เดินวิ่งเพื่อสุขภาพ",
-           
-        },
-        {
-            "date": "2019-11-30",
-            "name": "วิ่งตามฝัน",
-            
+          "date": "2019-11-1",
+          "name": "รับเบี้ยเลี้ยงผู้สูงอายุ",
 
         },
+        {
+          "date": "2019-11-8",
+          "name": "รับถุงยังชีพพระราชทาน",
 
-    ];
+        },
+       
+      ];
 
-    var table = $('#myTable').DataTable({
+      var table = $('#myTable').DataTable({
         responsive: true,       //for responsive column display
         deferRender: true,      //if large data, use this option
         data: dataSet,
         columns: [
-            { data: "date", title: "วันที่" },
-            { data: "name", title: "กิจกรรม" },
-            { title: "Action", orderable: false, defaultContent: "<button class='btn btn-danger my-1'>ลบ</button> <button class='btn btn-warning my-1'>แก้ไข</button>" }
+          { data: "date", title: "วันที่" },
+          { data: "name", title: "ข่าว" },
+          { title: "Action", orderable: false, defaultContent: "<button class='btn btn-danger my-1'>ลบ</button> <button class='btn btn-warning my-1'>แก้ไข</button>" }
         ],
         columnDefs: [
-            // make the last column align right, also target: "_all"
-            { "className": "dt-center", "targets": 2 }
+          // make the last column align right, also target: "_all"
+          { "className": "dt-center", "targets": 2 }
         ]
-    });
-    // Delete 
-    $('#myTable tbody').on('click', '.btn-danger', function () {
+      });
+      // Delete 
+      $('#myTable tbody').on('click', '.btn-danger', function () {
         var gun = table.row($(this).parents('tr')).data();
         // console.log(data.id);
 
@@ -107,10 +87,10 @@
         //         break;
         //     }
 
-    });
+      });
 
-    // Edit
-    $('#myTable tbody').on('click', '.btn-warning', function () {
+      // Edit
+      $('#myTable tbody').on('click', '.btn-warning', function () {
         // read data of the selected row
         check = 1;
         var data = table.row($(this).parents('tr')).data();
@@ -123,402 +103,336 @@
         // show modal
         $("#modalEdit").modal("show");
 
-    });
+      });
 
-    // Edit and save
-    $("#btnSave").click(function () {
+      // Edit and save
+      $("#btnSave").click(function () {
         if (check == 1) {
-            let date = $("#date").data();
-            let name = $("#txtName").val();
-            console.log(date + " " + name + " " + organize + " " + info);
+          let date = $("#date").data();
+          let name = $("#txtName").val();
+          console.log(date + " " + name + " " + organize + " " + info);
 
-            //search JS object array for "id"
-            for (var i = 0; i < dataSet.length; i++) {
-                if (dataSet[i].date == date) {
-                    break;
-                }
+          //search JS object array for "id"
+          for (var i = 0; i < dataSet.length; i++) {
+            if (dataSet[i].date == date) {
+              break;
             }
+          }
 
-            //close modal
-            $("#modalEdit").modal('hide');
-            //get selected row and update value
+          //close modal
+          $("#modalEdit").modal('hide');
+          //get selected row and update value
 
-            let temp = table.row(i).data();
-            temp.date = date;
-            temp.name = name;
+          let temp = table.row(i).data();
+          temp.date = date;
+          temp.name = name;
 
-            //update data table
-            table.row(i).data(temp).invalidate();
+          //update data table
+          table.row(i).data(temp).invalidate();
         } else {
-            let date = $("#date").val();
-            let name = $("#txtName").val();
-            //  console.log(id+" "+name+" "+gender+" "+major+" "+school); 
+          let date = $("#date").val();
+          let name = $("#txtName").val();
+          //  console.log(id+" "+name+" "+gender+" "+major+" "+school); 
 
-            //close modal
-            $("#modalEdit").modal('hide');
-            table.row.add({
-                "date": date,
-                "name": name
+          //close modal
+          $("#modalEdit").modal('hide');
+          table.row.add({
+            "date": date,
+            "name": name
 
-            }).draw();
+          }).draw();
         }
 
 
-    });
-    $("#add").click(function () {
+      });
+      $("#add").click(function () {
         check = 0;
         $("#date").val("");
         $("#txtName").val("");
         $("#modalEdit").modal("show");
 
-    });
-          
-        });
-       </script>
-   
-    <style>
-        #logout {
-            border: 2px solid red;
-            color:red;
-        }
-
-        h3 {
-            text-align: center;
-        }
-        #c{
-            text-align: center;
-        }
-       
-        #d{
-            color: red;
-        }
-        .carousel-caption h3  span{
-            background-color: black;
-            padding: 15px;
-        }
-        .carousel-caption p span {
-            
-            background-color:black;
-            padding: 15px;
-        }
-        .carousel-caption h3 {
-            font-size: 40px;
-        }
-        .carousel-caption p {
-            font-size: 30px;
-        }
-        .carousel-caption {
-    position: absolute;
-    top: 40%;
-    left: 1.8%;
-    right: auto;
-    width: 96.66666666666666%;
-    color: #fff;
-        }
-        .modal-header, h4, .close {
-    background-color: #5cb85c;
-    color:white !important;
-    text-align: center;
-    font-size: 30px;
-  }
-  .modal-footer {
-    background-color: #f9f9f9;
-    
-  }
-  .jumbotron{
-            margin-bottom: 0;
-            background-color:darkcyan ;
-            color: wheat;
-        }
-        .btn-outline-light{
-        background-color:black;
-        border:1px solid whitesmoke;
-}
-#edit{
-    background-color: rgb(204, 146, 37);
-    color: black;
-    border: whitesmoke;
-}
-
- 
-      
-    </style>
-
-<script>
-    $(document).ready(function(){
-      $("#submit").click(function(){
-        $("#myModal").modal();
       });
+
+
     });
-    </script>
+  </script>
+
+  <style>
+    .navbar {
+      background-color: darkslategrey;
+    }
+
+    #logout {
+      border: 2px solid red;
+      color: red;
+    }
+
+    h3,
+    h5 {
+      text-align: center;
+
+    }
+
+    #c {
+      text-align: center;
+    }
+
+    #d {
+      color: red;
+    }
+
+    .modal-header,
+    h4,
+    .close {
+      background-color: #5cb85c;
+      color: white !important;
+      text-align: center;
+      font-size: 30px;
+    }
+
+    .modal-footer {
+      background-color: #f9f9f9;
+
+    }
+
+    input[type=text],
+    input[type=password] {
+      width: 100%;
+
+      display: inline-block;
+      border: none;
+      background: #f1f1f1;
+    }
+
+    .card {
+      height: 90%;
+    }
+
+    .card-text {
+      font-size: 80%;
+    }
+
+    .img-top {
+      text-align: center;
+    }
+  </style>
 </head>
 
+<body style="background-color: gainsboro;">
 
+  <div class="container-fluid ">
+    <!-- Navigation -->
+    <nav class="navbar navbar-expand-sm navbar-dark  ">
+      <a class="navbar-brand" href=""><img src="p.png" alt="profile" style="width: 40px;"></a>
+      <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
+        aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavId">
+        <form class="form-inline">
+          <input class="form-control mr-sm-2" type="text" placeholder="ค้นหา">
+          <button class="btn btn-success" id="search">ค้นหา</button>
+        </form>
 
-<body>
-    <div class="container-fluid">
-        <!-- Navigation -->
-        <nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-            <a class="navbar-brand" href="#">logo</a>
-            <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
-                data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
-                aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="collapsibleNavId">
-                    <form class="form-inline">
-                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                        <button class="btn btn-success" type="submit">ค้นหา</button>
-                      </form>
-                            
-  <!-- Modal -->
-  <div class="modal fade" id="myModal" role="dialog">
-    <div class="modal-dialog">
-    
-      <!-- Modal content-->
-      <div class="modal-content">
-        <div class="modal-header" style="padding:35px 50px;">
-            <h4><span class="glyphicon glyphicon-lock" ></span> เข้าสู่ระบบ</h4>
-          <button type="button" class="close" data-dismiss="modal">&times;</button>
-          
-        </div>
-        <div class="modal-body" style="padding:40px 50px;">
-          <form role="form">
-            <div class="form-group">
-              <label for="usrname"><span class="glyphicon glyphicon-user"></span>ชื่อ</label>
-              <input type="text" class="form-control" id="usrname" placeholder="กรอกชื่อ">
+        <!-- Modal -->
+        <div class="modal fade" id="myModal" role="dialog">
+          <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+              <div class="modal-header" style="padding:35px 50px;">
+                <h4><span class="glyphicon glyphicon-lock"></span> เข้าสู่ระบบ</h4>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+
+              </div>
+              <div class="modal-body" style="padding:40px 50px;">
+                <form role="form">
+                  <div class="form-group">
+                    <label for="usrname"><span class="glyphicon glyphicon-user"></span>ชื่อ</label>
+                    <input type="text" class="form-control" id="usrname" placeholder="กรอกชื่อ">
+                  </div>
+                  <div class="form-group">
+                    <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> รหัสผ่าน</label>
+                    <input type="text" class="form-control" id="psw" placeholder="กรอกรหัสผ่าน">
+                  </div>
+                  <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span>
+                    เข้าสู่ระบบ</button>
+                  <button type="submit" class="btn btn-danger btn-block"><span
+                      class="glyphicon glyphicon-off "></span>ยกเลิก</button>
+                </form>
+              </div>
+              <div class="modal-footer">
+                <p>ไม่ใช่สมาชิก? <a href="#">ลงทะเบียน</a></p>
+
+                <p>ลืม <a href="#">รหัสผ่าน?</a></p>
+              </div>
             </div>
-            <div class="form-group">
-              <label for="psw"><span class="glyphicon glyphicon-eye-open"></span> รหัสผ่าน</label>
-              <input type="text" class="form-control" id="psw" placeholder="กรอกรหัสผ่าน">
-            </div>
-            <div class="checkbox">
-              <label><input type="checkbox" value="" checked>Remember me</label>
-            </div>
-              <button type="submit" class="btn btn-success btn-block"><span class="glyphicon glyphicon-off"></span> เข้าสู่ระบบ</button>
-              <button type="submit" class="btn btn-danger btn-block"><span class="glyphicon glyphicon-off"></span>ยกเลิก</button>
-          </form>
+
+          </div>
         </div>
-        <div class="modal-footer">
-          <p >Not a member? <a href="#">ลงทะเบียน</a></p>
-          <p>ลืม <a href="#">รหัสผ่าน?</a></p>
-        </div>
+
+        <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+          <li class="nav-item active">
+            <a class="nav-link" href="#">หน้าหลัก <span class="sr-only">(current)</span></a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">กราฟกิจกรรม</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">กิจกรรม</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#"></a>
+          </li>
+
+        </ul>
+
+        <button type="button" class="btn btn-danger mr-2" id="submit">ออกจากระบบ</button>
+
       </div>
-      
-    </div>
-  </div> 
-</div>
-
-                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="#">หน้าหลัก <span class="sr-only">(current)</span></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">กราฟ</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">กิจกรรม</a>
-                    </li>
-                    <li class="nav-item">
-                            <a class="nav-link" href="#"></a>
-                        </li>
-                   
-                </ul>
-
-                <button type="button" class="btn btn-danger mr-2" id="submit">ออกจากระบบ</button>
-
-               
-
-            </div>
-        </nav>
-        <div class="row">
-                <div class="col-12">
-                    <button id="add" class="btn btn-success float-right mb-3">Add</button>
-                </div>
-            </div>
-            
-            <div class="container my-2 " style="background-color: white;">
-                <table id="myTable" class="table table-striped table-bordered " style="width:100%">
-                </table>
-    
-                <!-- Modal -->
-                <div class="modal fade" id="modalEdit">
-                    <div class="modal-dialog" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h4 class="modal-title" id="modelTitleId">Edit</h4>
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <input type="date" class="form-control mb-1" id="date">
-                                <input type="text" class="form-control mb-1" id="txtName" placeholder="ชื่อกิจกรรม">
-                                
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                <button id="btnSave" type="button" class="btn btn-primary">Save</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-        <!-- Jumbotron -->
-    <div class="jumbotron jumbotron-fluid text-center mb-2">
-      <div class="container">
-          <h1 class="display-4">ข่าวประชาสัมพันธ์</h1>
-          <h5>นัดรับเบี้ยผู้สูงอายุ ณ วันที่ 4 ธันวาคม 2562 เวลา 10:00-16:00 น.</h5>
-          <button type="button" class="btn btn-primary mt-3" id="edit">Edit</button>
-          
-          
+    </nav>
+    <div class="row">
+      <div class="col-12">
+          <button id="add" class="btn btn-success float-right mb-2 mt-2 mr-5">เพิ่มข่าว</button>
       </div>
   </div>
+    <div class="container my-2 mt-2 " style="background-color: white;">
+      <table id="myTable" class="table table-striped table-bordered " style="width:100%">
+      </table>
 
-        <div id="demo" class="carousel slide" data-ride="carousel">
-
-            <!-- Indicators -->
-            <ul class="carousel-indicators">
-                <li data-target="#demo" data-slide-to="0" class="active"></li>
-                <li data-target="#demo" data-slide-to="1"></li>
-                <li data-target="#demo" data-slide-to="2"></li>
-            </ul>
-
-            <!-- The slideshow -->
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <img src="h.jpg" alt="Food" width="1300" height="800">
-                    <div class="carousel-caption">
-                        <h3 class="mb-5" > <span> อาหารเพื่อสุขภาพ </span></h3>
-                        <p > <span> กิจกรรม ทำอาหาร </span></p>
-                        <button type="button" class="btn btn-outline-light btn-lg mt-4">Edit</button>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="sewing.jpg" alt="Sew" width="1300" height="700">
-                    <div class="carousel-caption">
-                        <h3 class="mb-5"> <span>  เย็บผ้า </span></h3>
-                        <p > <span> กิจกรรม เย็บผ้า </span></p>
-                        <button type="button" class="btn btn-outline-light btn-lg mt-4">Edit</button>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <img src="hand.jpg" alt="Hand Craf" width="1300" height="700">
-                    <div class="carousel-caption">
-                        <h3  class="mb-5"> <span> งานประดิษฐ์</span></h3>
-                        <p > <span> กิจกรรม ประดิษฐ์ ประดอย </span></p>
-                        <button type="button" class="btn btn-outline-light btn-lg mt-4">Edit</button>
-                    </div>
-                </div>
-                
+      <!-- Modal -->
+      <div class="modal fade" id="modalEdit">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h4 class="modal-title" id="modelTitleId">Edit</h4>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
             </div>
+            <div class="modal-body">
+              <input type="date" class="form-control mb-1" id="date">
+              <input type="text" class="form-control mb-1" id="txtName" placeholder="ชื่อกิจกรรม">
 
-            <!-- Left and right controls -->
-            <a class="carousel-control-prev" href="#demo" data-slide="prev">
-                <span class="carousel-control-prev-icon"></span>
-            </a>
-            <a class="carousel-control-next" href="#demo" data-slide="next">
-                <span class="carousel-control-next-icon"></span>
-            </a>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <button id="btnSave" type="button" class="btn btn-primary">Save</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="container">
+    
+    <div class="container">
+      <div class="form-group" style="width: 50%;">
+        สไลด์กิจกรรม
+        <textarea class="form-control mb-2" rows="2" id="activity" placeholder="กิจกรรม"></textarea>
+        <button class="btn btn-success">โพส</button>
+        <button class="btn btn-success">เปลี่ยนรูป</button>
+      </div>
+    </div>
+
+
+
+    <h3 class="mt-3">มุมสุขภาพ</h3>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-4 mt-3" id="c">
+          <div class="card   ml-2 mr-4 shadow p-3 mb-1 bg-white rounded" style="width:300px">
+            <img class="card-img-top mx-auto" src="ex1.jpg" alt="Card image" style="width:50%" height="100">
+            <div class="card-body">
+              <h5 class="card-title ">ท่าบริหารลำตัว</h5>
+              <p class="card-text">ให้ยืนตัวตรงกางขาออกเล็กน้อย ตามอง ไปข้างหน้า มือเท้าเอว
+                ค่อยๆบิดลำตัวช่วงบนไปด้านขวาให้มากที่สุดเท่าที่จะทำได้ โดยไม่บิดสะโพก
+                จากนั้นให้ทำแบบเดียวกันไปทางด้านซ้าย
+                ทำซ้ำกัน 10 ครั้ง</p>
+              <a href="#" class="btn btn-secondary"> แก้ไข </a>
+
+            </div>
+          </div>
+
+        </div>
+        <div class="col-sm-4 mt-3" id="c">
+          <div class="card   ml-2 shadow p-3 mb-4 bg-white rounded style=width:300px">
+            <img class="card-img-top mx-auto" src="ex2.png" alt="Card image" style="width:50%;" height="100">
+            <div class="card-body">
+              <h5 class="card-title">ท่าบริหารข้อเท้า</h5>
+              <p class="card-text  ">ตรงนี้ให้นั่งบนเก้าอี้ ให้ยกขาทีละข้าง เริ่มจากขาขวาก่อน
+                ยกขึ้นจากพื้นและกระดกปลายเท้าเข้าหาตัว จากนั้นกระดกปลายเท้าลง ทำซ้ำกัน 10 ครั้ง</p>
+
+              <a href="#" class="btn btn-secondary mt-3"> แก้ไข </a>
+
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-4 mt-3" id="c">
+          <div class="card   ml-5 shadow p-3 mb-5 bg-white rounded" style="width:300px">
+            <img class="card-img-top mx-auto " src="ex3.png" alt="Card image" style="width:50%" height="100">
+            <div class="card-body">
+              <h5 class="card-title">ท่ายืนด้วยปลายเท้า</h5>
+              <p class="card-text">แบบไม่ใช้ราวจับ ยืดแขนขาความกว้างเท่าช่วงไหล่
+                แล้วค่อยๆเขย่งปลายเท้าขึ้นจนสุด แล้วค่อยๆวางส้นเท้าลง ท่านี้ให้ทำซ้ำ 10 ครั้ง</p>
+              <a href="#" class="btn btn-secondary "> แก้ไข </a>
+
+            </div>
+          </div>
+
+
+
         </div>
 
-        <h3 class="mt-3">มุมสุขภาพ</h3>
-        <div class="container">
+      </div>
+
+    </div>
+  </div>
+  <div class="container-fluid">
+    <footer style="background-color: darkslategray">
+      <div class="container-fluid padding">
+        <div class="row text-center text-light">
+          <div class="col-md-4">
+            <hr class="light">
+            <h5>ฉุกเฉิน</h5>
+            <hr class="light">
             <div class="row">
-                <div class="col-sm-4 mt-3" id="c">
-                        <div class="card mr-4" style="width:300px">
-                                <img class="card-img-top" src="ex1.jpg" alt="Card image" style="width:100%" height="270">
-                                <div class="card-body">
-                                  <h3 class="card-title ">ท่าบริหารลำตัว</h3>
-                                  <p class="card-text">ให้ยืนตัวตรงกางขาออกเล็กน้อย ตามอง ไปข้างหน้า มือเท้าเอว
-                                        ค่อยๆบิดลำตัวช่วงบนไปด้านขวาให้มากที่สุดเท่าที่จะทำได้ โดยไม่บิดสะโพก
-                                        จากนั้นให้ทำแบบเดียวกันไปทางด้านซ้าย
-                                        ทำซ้ำกัน 10 ครั้ง</p>
-                                        <p class="btn btn-primary mt-2 mb-4">See More</p>
-                                        <p class="btn btn-primary mt-2 mb-4">Edit</p>
-                                </div>
-                              </div>
-             
-                </div>
-                <div class="col-sm-4 mt-3" id="c">
-                        <div class="card ml-5" style="width:300px">
-                                <img class="card-img-top" src="ex2.png" alt="Card image" style="width:100%;" height="270">
-                                <div class="card-body">
-                                  <h3 class="card-title">ท่าบริหารข้อเท้า</h3>
-                                  <p class="card-text mt-1 ">ตรงนี้ให้นั่งบนเก้าอี้ ให้ยกขาทีละข้าง เริ่มจากขาขวาก่อน
-                                        ยกขึ้นจากพื้นและกระดกปลายเท้าเข้าหาตัว จากนั้นกระดกปลายเท้าลง ทำซ้ำกัน 10 ครั้ง</p>
-                                        
-                                 <p class="btn btn-primary mt-4 mb-5">See More</p>
-                                  <p class="btn btn-primary mt-4 mb-5">Edit</p>
-                                </div>
-                              </div>
-                </div>
-                <div class="col-sm-4 mt-3" id="c">
-                        <div class="card ml-5" style="width:300px">
-                                <img class="card-img-top " src="ex3.png" alt="Card image" style="width:100%" height="270">
-                                <div class="card-body">
-                                  <h3 class="card-title">ท่ายืนด้วยปลายเท้า</h3>
-                                  <p class="card-text">แบบไม่ใช้ราวจับ ยืดแขนขาความกว้างเท่าช่วงไหล่
-                                        แฃ้วค่อยๆเขย่งปลายเท้าขึ้นจนสุด แล้วค่อยๆวางส้นเท้าลง ท่านี้ให้ทำซ้ำ 10 ครั้ง</p>
-                                        <p class="btn btn-primary mt-4 mb-5">See More</p>
-                                        <p class="btn btn-primary mt-4 mb-5">Edit</p>
-                                </div>
-                              </div>
-                    
+              <div class="col-sm-12" id="d">
+                <img src="support.png" alt="" width="30">
+                โทร: 091-2828333
+              </div>
 
-
-                </div>
 
             </div>
-            <div>
-           
-            </div>
-                </div>
-</div>
-<br><br>
-<div class="container-fluid">
-        <footer  style="background-color: #343a40">
-                <div class="container-fluid padding">
-                    <div class="row text-center text-light">
-                        <div class="col-md-4">
-                        <hr class="light">
-                        <h5>ฉุกเฉิน</h5>
-                        <hr class="light">
-                        <div class="row">
-                                <div class="col-sm-12" id="d" >
-                                        <img src="support.png" alt="" width="30" >
-                                           โทร: 091-2828333
-                                    </div>
-                                
+          </div>
+          <div class=" col-md-4">
+            <hr class="light">
+            <h5>เกี่ยวกับเรา</h5>
+            <hr class="light">
+            <p class="mt-2">ศูนย์จัดเตรียมกิจกรรมมากมายเพื่อผู้สูงอายุ
+              และข่าวประชาสัมพันธ์เรื่องสุขภาพเพื่อชีวิตที่ดีขึ้น</p>
 
-                        </div>
-                        </div>
-                        <div class="col-md-4">
-                                <hr class="light">
-                                <h5>เกี่ยวกับเรา</h5>
-                                <hr class="light">
-                                <p class="mt-2">ศูนย์จัดเตรียมกิจกรรมมากมายเพื่อผู้สูงอายุ และข่าวประชาสัมพันธ์เรื่องสุขภาพเพื่อชีวิตที่ดีขึ้น</p>
-                                
-                                
-                            </div>
-                        
-                            
-                        
-                        <div class="col-md-4">
-                            <hr class="light">
-                            <h5>ติดต่อเรา</h5>
-                            <hr class="light">
-                            <p class="mt-1">Office: 02-222-0000</p>
-                            <p>Address:City, State, 00000</p>
-                            
-                        </div>
-                        
-                    </div>
-                </div>
-            </footer>
 
-</div>
+          </div>
+
+
+
+          <div class="col-md-4">
+            <hr class="light">
+            <h5>ติดต่อเรา</h5>
+            <hr class="light">
+            <p class="mt-1">Office: 02-222-0000</p>
+            <p>Address:City, State, 00000</p>
+
+          </div>
+
+        </div>
+      </div>
+    </footer>
+
+  </div>
+  <!-- new -->
+
 
 
 </body>
