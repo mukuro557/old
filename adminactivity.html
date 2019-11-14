@@ -93,7 +93,13 @@
             });
             // Delete 
             $('#myTable tbody').on('click', '.btn-danger', function () {
-                $(".btn-danger").val("ยกเลิก");
+                $(this).text("ยกเลิก");
+                $(this).attr("class","btn btn-dark");
+
+            });
+            $('#myTable tbody').on('click', '.btn-dark', function () {
+                $(this).text("ปิดกิจกรรม");
+                $(this).attr("class","btn btn-danger");
 
             });
 
