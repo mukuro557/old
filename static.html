@@ -10,59 +10,64 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <style>
-        .container {
+        .container{
             text-align: center;
         }
-
-        .navbar {
-            background-color: darkslategrey;
-        }
-
-        .container-fluid {
-            background-color: darkslategrey;
-        }
+        
     </style>
 
     <title>TableActivity</title>
 </head>
 
 <body style="background-color: gainsboro;">
-
-    <!-- Navigation -->
-    <!-- Navigation -->
-    <nav class="navbar navbar-expand-sm navbar-dark  ">
-        <a class="navbar-brand" href="#"><img src="p.png" alt="profile" style="width: 40px;"></a>
-        <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse" data-target="#collapsibleNavId"
-            aria-controls="collapsibleNavId" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="collapsibleNavId">
-            <form class="form-inline">
-                <input class="form-control mr-sm-2" type="text" placeholder="Search">
-                <button class="btn btn-success" id="search">ค้นหา</button>
-            </form>
-            <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
-                <li class="nav-item active">
-                    <a class="nav-link" href="#">หน้าหลัก <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">ข้อมูลผู้สูงอายุ</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">กิจกรรม</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#"></a>
-                </li>
-
-            </ul>
-
-
-            <button class="btn btn-danger">ออกจากระบบ</button>
-
-
+    <div>
+            <!-- Navigation -->
+            <nav class="navbar navbar-expand-sm navbar-dark" style="background-color: darkslategrey;">
+                <img src="p.png" style="width: 3%; height: 3%;" class="mr-2">
+                <button class="navbar-toggler d-lg-none" type="button" data-toggle="collapse"
+                    data-target="#collapsibleNavId" aria-controls="collapsibleNavId" aria-expanded="false"
+                    aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="collapsibleNavId">
+                    <form class="form-inline">
+                        <input class="form-control mr-sm-2" type="text" placeholder="Search">
+                        <button class="btn btn-success" type="submit">ค้นหา</button>
+                    </form>
+    
+                </div>
+    
+                <ul class="navbar-nav ml-auto mt-2 mt-lg-0">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="#">หน้าหลัก <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#">แก้ไขโฆษณา
+                            <span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#" style="color: black;">สไลด์กิจกรรม</a></li>
+                            <li><a href="#" style="color: black;">มุมสุขภาพ</a></li>
+                            <li><a href="#" style="color: black;">ข่าว</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">กราฟ</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">กิจกรรม</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"></a>
+                    </li>
+    
+                </ul>
+    
+                <button type="button" class="btn btn-danger mr-2" id="submit">ออกจากระบบ</button>
+    
+            </nav>
+    
+    
         </div>
-    </nav>
 
     <br>
     <br>
@@ -90,9 +95,6 @@
         </select>
         <br>
         <br>
-        <p>
-            <img src="chart.png" alt="chart" style="width: 45%;">
-        </p>
 
         <table class="table table-striped table-hover" style="width: 50%;" align="center">
             <thead class="thead-dark">
@@ -126,8 +128,8 @@
 
 
     <!-- Footer -->
-    <div class="container-fluid">
-        <footer style="background-color: #343a40">
+    <div>
+        <footer style="background-color: darkslategrey;">
             <div class="container-fluid padding">
                 <div class="row text-center text-light">
                     <div class="col-md-4">
@@ -137,35 +139,35 @@
                         <div class="row">
                             <div class="col-sm-12" id="d" style="color: red;">
                                 <img src="support.png" alt="" width="30">
-                                โทร: 091-2828333
+                                               โทร: 091-2828333
+                                        </div>
+                                    
+    
+                            </div>
+                            </div>
+                            <div class=" col-md-4">
+                                <hr class="light">
+                                <h5>เกี่ยวกับเรา</h5>
+                                <hr class="light">
+                                <p class="mt-2">ศูนย์จัดเตรียมกิจกรรมมากมายเพื่อผู้สูงอายุ
+                                    และข่าวประชาสัมพันธ์เรื่องสุขภาพเพื่อชีวิตที่ดีขึ้น</p>
+
+
                             </div>
 
 
+
+                            <div class="col-md-4">
+                                <hr class="light">
+                                <h5>ติดต่อเรา</h5>
+                                <hr class="light">
+                                <p class="mt-1">Office: 02-222-0000</p>
+                                <p>Address:City, State, 00000</p>
+
+                            </div>
+
                         </div>
                     </div>
-                    <div class=" col-md-4">
-                        <hr class="light">
-                        <h5>เกี่ยวกับเรา</h5>
-                        <hr class="light">
-                        <p class="mt-2">ศูนย์จัดเตรียมกิจกรรมมากมายเพื่อผู้สูงอายุ
-                            และข่าวประชาสัมพันธ์เรื่องสุขภาพเพื่อชีวิตที่ดีขึ้น</p>
-
-
-                    </div>
-
-
-
-                    <div class="col-md-4">
-                        <hr class="light">
-                        <h5>ติดต่อเรา</h5>
-                        <hr class="light">
-                        <p class="mt-1">Office: 02-222-0000</p>
-                        <p>Address:City, State, 00000</p>
-
-                    </div>
-
-                </div>
-            </div>
         </footer>
 
     </div>
