@@ -36,7 +36,7 @@
 
             var dataSet = [
                 {
-                    "date": '2019-11-1',
+                    "date": "\"2019-11-1\"",
                     "name": "วิ่งเพื่อสุขภาพ",
                     "organize": "สุรพง",
                     "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ",
@@ -84,7 +84,7 @@
                     { data: "name", title: "กิจกรรม" },
                     { data: "organize", title: "ผู้จัดงาน" },
                     { data: "info", title: "รายละเอียด" },
-                    { title: "Action", orderable: false, defaultContent: "<button class='btn btn-danger my-1'>ลบ</button> <button class='btn btn-warning my-1'>แก้ไข</button>" }
+                    { title: "Action", orderable: false, defaultContent: "<button class='btn btn-danger my-1'>ปิดกิจกรรม</button> <button class='btn btn-warning my-1'>แก้ไข</button>" }
                 ],
                 columnDefs: [
                     // make the last column align right, also target: "_all"
@@ -93,23 +93,13 @@
             });
             // Delete 
             $('#myTable tbody').on('click', '.btn-danger', function () {
-                var gun = table.row($(this).parents('tr')).data();
-                // console.log(data.id);
+                $(this).text("ยกเลิก");
+                $(this).attr("class","btn btn-dark");
 
-                gun.date = dataSet.splice;
-                gun.name = dataSet.splice;
-                gun.organize = dataSet.splice;
-                gun.info = dataSet.splice;
-                $(this).parents("tr").remove();
-                // console.log(data);
-                // let id = $("#txtId").val();
-                // $( this ).parent("tr").remove();
-                // for (i = 0; i < dataSet.length; i++) {
-                //     if (dataSet[i].id == data["id"]) {
-                //         var delet = dataSet[i].id;
-                //         table.row($(this).parents('tr')).remove().draw(false);
-                //         break;
-                //     }
+            });
+            $('#myTable tbody').on('click', '.btn-dark', function () {
+                $(this).text("ปิดกิจกรรม");
+                $(this).attr("class","btn btn-danger");
 
             });
 
@@ -346,7 +336,7 @@
         <div class="container my-2 " style="background-color: white;">
             <table id="myTable" class="table table-striped table-bordered " style="width:100%">
             </table>
-            
+
             <!-- Modal -->
             <div class="modal fade" id="modalEdit">
                 <div class="modal-dialog" role="document">
