@@ -66,59 +66,59 @@
     <div class="container">
         <div class="row">
             <div class="col">
-                    <br>
-                    <img src="p.png" alt="profile">
-                    <br><br>
-                        <button class="btn btn-danger">อัพโหลดรูป</button>
-                        <br><br>
-                        <h1 style="font-size: 40px;">ข้อมูลส่วนตัว</h1>
-                        <button class="btn btn-danger">แก้ไขข้อมูลส่วนตัว</button>
-                        
+                <br>
+                <img src="p.png" alt="profile">
+                <br><br>
+                <button class="btn btn-danger">อัพโหลดรูป</button>
+                <br><br>
+                <h1 style="font-size: 40px;">ข้อมูลส่วนตัว</h1>
+                <button class="btn btn-danger">แก้ไขข้อมูลส่วนตัว</button>
+
                 <h6>
                     <br><br>
                     ชื่อ : นางสุจิตราภรณ์ จักรบุตร<br><br>
                     เบอร์โทร : 092-4697319<br><br>
                     อีเมล์ : sujitra@example.com<br><br>
                     ที่อยู่ : มหาวิทยาลัยแม่ฟ้าหลวง 333 ม.1 ต.ท่าสุด
-                    อ.เมือง จ.เชียงราย 57100 
+                    อ.เมือง จ.เชียงราย 57100
                 </h6>
-                
+
             </div>
 
 
             <div class="col">
-                    <img src="health.jpg" alt="health" style="width: 100%;">
+                <img src="health.jpg" alt="health" style="width: 100%;">
                 <br><br><br>
 
-                    <table class="table table-striped table-hover" style="width: 100%;" align="center">
-                        <thead class="thead-dark">
-                            <tr>
-                                <th>รายชื่อกิจกรรม</th>
-                                <th>สถานะ</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
+                <table class="table table-striped table-hover" style="width: 100%;" align="center">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>รายชื่อกิจกรรม</th>
+                            <th>สถานะ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
 
-                                <td class="bg-light text-dark">สูงวัย...ใส่ใจสุขภาพ</td>
-                                <td class="bg-light text-success">เข้าร่วม</td>
+                            <td class="bg-light text-dark">สูงวัย...ใส่ใจสุขภาพ</td>
+                            <td class="bg-light text-success">เข้าร่วม</td>
 
-                            </tr>
-                            <tr>
+                        </tr>
+                        <tr>
 
-                                <td class="bg-light text-dark">ปันยิ้มสร้างสุข</td>
-                                <td class="bg-light text-danger">ไม่ได้เข้าร่วม</td>
+                            <td class="bg-light text-dark">ปันยิ้มสร้างสุข</td>
+                            <td class="bg-light text-danger">ไม่ได้เข้าร่วม</td>
 
-                            </tr>
-                            <tr>
+                        </tr>
+                        <tr>
 
-                                <td class="bg-light text-dark">ขยับกาย สบายชีวา</td>
-                                <td class="bg-light text-success">เข้าร่วม</td>
+                            <td class="bg-light text-dark">ขยับกาย สบายชีวา</td>
+                            <td class="bg-light text-success">เข้าร่วม</td>
 
-                            </tr>
-                        </tbody>
-                    </table>
-                
+                        </tr>
+                    </tbody>
+                </table>
+
             </div>
 
 
@@ -129,7 +129,29 @@
 
     <br>
     <br>
-
+    <!-- Modal -->
+    <div class="modal fade" id="modalEdit">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="modelTitleId">Edit</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="date" class="form-control mb-1" id="date">
+                    <input type="text" class="form-control mb-1" id="txtName" placeholder="ชื่อกิจกรรม">
+                    <input type="text" class="form-control mb-1" id="organize" placeholder="ชื่อผู้จัด">
+                    <input type="text" class="form-control my-1" id="info" placeholder="รายละเอียด">
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">ยกเลิก</button>
+                    <button id="btnSave" type="button" class="btn btn-primary">บันทึก</button>
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- Footer -->
     <div>
         <footer style="background-color: #343a40">
