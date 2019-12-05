@@ -36,46 +36,52 @@
 
             var dataSet = [
                 {
-                    "date": "\"2019-11-1\"",
+                    "id": "1",
+                    "date": "2019-11-1",
                     "name": "วิ่งเพื่อสุขภาพ",
                     "organize": "สุรพง",
-                    "limit" : "50",
+                    "limit": "20/50",
                     "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ"
 
                 },
                 {
+                    "id": "2",
                     "date": "2019-11-8",
                     "name": "โรงเรียนผู้สูงอายุ",
                     "organize": "สุรพง",
-                    "limit" : "50",
+                    "limit": "30/50",
                     "info": "เรียนรู้เรื่องราวใหม่ๆ วัดบัานแม่เลียบ ต.โชคชัย",
                 },
                 {
+                    "id": "3",
                     "date": "2019-11-15",
                     "name": "มินิมาราทอนผู้สูงอายุ",
                     "organize": "สุรพง",
-                    "limit" : "ไม่จำกัด",
+                    "limit": "40/ไม่จำกัด",
                     "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ ณ บ้านป่าลัน",
                 },
                 {
+                    "id": "4",
                     "date": "2019-11-20",
                     "name": "ปลูกป่า",
                     "organize": "สุรพง",
-                    "limit" : "50",
+                    "limit": "50/50",
                     "info": "รักสิ่งแวดล้อม ปลูกป่าชุมชน ณ บ้านแม่เลียบ ",
                 },
                 {
+                    "id": "5",
                     "date": "2019-11-24",
                     "name": "เดินวิ่งเพื่อสุขภาพ",
                     "organize": "สุรพง",
-                    "limit" : "100",
+                    "limit": "25/100",
                     "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ บ้านใหม่ดอนงาม",
                 },
                 {
+                    "id": "6",
                     "date": "2019-11-30",
                     "name": "วิ่งตามฝัน",
                     "organize": "สุรพง",
-                    "limit" : "40",
+                    "limit": "35/40",
                     "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ บ้านซ้อ",
 
                 },
@@ -92,7 +98,13 @@
                     { data: "organize", title: "ผู้จัดงาน" },
                     { data: "info", title: "รายละเอียด" },
                     { data: "limit", title: "จำนวน"},
-                    { title: "Action", orderable: false, defaultContent: "<button class='btn btn-danger my-1'>ปิดกิจกรรม</button> <button class='btn btn-warning my-1'>แก้ไข</button>" }
+                    { title: "Action",render: function (data, type, row, meta) {
+                            let but = "<button class='btn btn-danger my-1'>ปิดกิจกรรม</button> <button class='btn btn-warning my-1'>แก้ไข</button>"
+                            if (row.id == 1 ) {
+                                but = "<button class='btn btn-danger my-1' disabled>ปิดกิจกรรม</button> <button class='btn btn-warning my-1'>ใช้กิจกรรม</button>"
+                            }
+                            return but;
+                        }}  
                 ],
                 columnDefs: [
                     // make the last column align right, also target: "_all"
