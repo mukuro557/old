@@ -30,47 +30,53 @@
             });
 
             var dataSet = [
-            {
-                    "date": "\"2019-11-1\"",
+                {
+                    "id": "1",
+                    "date": "2019-11-1",
                     "name": "วิ่งเพื่อสุขภาพ",
                     "organize": "สุรพง",
-                    "limit" : "50",
+                    "limit": "20/50",
                     "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ"
 
                 },
                 {
+                    "id": "2",
                     "date": "2019-11-8",
                     "name": "โรงเรียนผู้สูงอายุ",
                     "organize": "สุรพง",
-                    "limit" : "50",
+                    "limit": "30/50",
                     "info": "เรียนรู้เรื่องราวใหม่ๆ วัดบัานแม่เลียบ ต.โชคชัย",
                 },
                 {
+                    "id": "3",
                     "date": "2019-11-15",
                     "name": "มินิมาราทอนผู้สูงอายุ",
                     "organize": "สุรพง",
-                    "limit" : "ไม่จำกัด",
+                    "limit": "ไม่จำกัด",
                     "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ ณ บ้านป่าลัน",
                 },
                 {
+                    "id": "4",
                     "date": "2019-11-20",
                     "name": "ปลูกป่า",
                     "organize": "สุรพง",
-                    "limit" : "50",
+                    "limit": "50/50",
                     "info": "รักสิ่งแวดล้อม ปลูกป่าชุมชน ณ บ้านแม่เลียบ ",
                 },
                 {
+                    "id": "5",
                     "date": "2019-11-24",
                     "name": "เดินวิ่งเพื่อสุขภาพ",
                     "organize": "สุรพง",
-                    "limit" : "100",
+                    "limit": "25/100",
                     "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ บ้านใหม่ดอนงาม",
                 },
                 {
+                    "id": "6",
                     "date": "2019-11-30",
                     "name": "วิ่งตามฝัน",
                     "organize": "สุรพง",
-                    "limit" : "40",
+                    "limit": "35/40",
                     "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ บ้านซ้อ",
 
                 },
@@ -82,18 +88,26 @@
                 deferRender: true,      //if large data, use this option
                 data: dataSet,
                 columns: [
-                { data: "date", title: "วันที่" },
+                    { data: "date", title: "วันที่" },
                     { data: "name", title: "กิจกรรม" },
                     { data: "organize", title: "ผู้จัดงาน" },
                     { data: "info", title: "รายละเอียด" },
-                    { data: "limit", title: "จำนวน"},
-                    { title: "Action", orderable: false, defaultContent: "<button class='btn btn-success my-1'value='เข้าร่วม'>เข้าร่วม</button>" }
+                    { data: "limit", title: "จำนวน" },
+                    {
+                        title: "Action", render: function (data, type, row, meta) {
+                            let but = "<button class='btn btn-success my-1 btnsus'value='เข้าร่วม' id = id" + row.id + ">เข้าร่วม</button>"
+                            if (row.id == 1 || row.id == 4) {
+                                but = "<button class='btn btn-success my-1'value='เข้าร่วม' id = id" + row.id + " disabled>เข้าร่วม</button>"
+                            }
+                            return but;
+                        }
+                    }
                 ],
                 columnDefs: [
                     // make the last column align right, also target: "_all"
                     { "className": "dt-center", "targets": 3 }
                 ]
-                
+
             });
             var table = $('#myTable').DataTable();
             // table.buttons( [1, '1'] ).attr("class","btn btn-primary my-1" );
@@ -101,23 +115,40 @@
             // if (dat == ) {
             //     $("btn").attr("disabled",true);
             // }
-            $('#myTable tbody').on('click', '.btn-success', function () {
+
+            //finish========================================================
+            //             $('#myTable tbody').on('click', '.btn-success', function () {
+            //                 const currentRow = $(this).parents('tr');
+            //                 //get selected row and update value
+            //                 let temp = table.row(currentRow).data();
+            //                 //we can check current switch status by if(this.checked)
+            //                 if(temp.status == 1) {
+            //                     temp.status = 0;
+            //                 }
+            //                 else {
+            //                     temp.status = 1;
+            //                 }
+
+            //                 //update data table
+            //                 table.row(currentRow).data(temp).invalidate();
+            //             });
+            $('#myTable tbody').on('click', '.btnsus', function () {
                 var ans = dataSet.date;
-                //    butt=
-                $(this).attr("class", "btn btn-danger my-1")
+                $(this).attr("class", "btn btn-dark my-1")
                 $(this).text("ยกเลิก")
 
 
             });
-            $('#myTable tbody').on('click', '.btn-danger', function () {
+            $('#myTable tbody').on('click', '.btn-dark', function () {
                 var ans = dataSet.date;
-                //    butt=
-                $(this).attr("class", "btn btn-success my-1")
+                $(this).attr("class", "btn btn-success btnsus my-1")
                 $(this).text("เข้าร่วม")
 
 
             });
         });
+
+
     </script>
     <style>
         .navbar {
@@ -268,59 +299,59 @@
 
 
 
-<div class="container my-2 " style="background-color: white;">
-     <table id="myTable" class="table table-striped table-bordered " style="width:100%">
-        </table>
-</div>
+        <div class="container my-2 " style="background-color: white;">
+            <table id="myTable" class="table table-striped table-bordered " style="width:100%">
+            </table>
+        </div>
 
-       
+
 
 
 
     </div>
     <div class="container-fluid mt-3">
-            <footer style="background-color: darkslategray">
-              <div class="container-fluid padding">
+        <footer style="background-color: darkslategray">
+            <div class="container-fluid padding">
                 <div class="row text-center text-light">
-                  <div class="col-md-4">
-                    <hr class="light">
-                    <h5>ฉุกเฉิน</h5>
-                    <hr class="light">
-                    <div class="row">
-                      <div class="col-sm-12" id="d">
-                        <img src="support.png" alt="" width="30" >
-                                                   โทร: 091-2828333
-                                            </div>
-                                        
-        
-                                </div>
-                                </div>
-                                <div class=" col-md-4">
+                    <div class="col-md-4">
+                        <hr class="light">
+                        <h5>ฉุกเฉิน</h5>
+                        <hr class="light">
+                        <div class="row">
+                            <div class="col-sm-12" id="d">
+                                <img src="support.png" alt="" width="30">
+                                โทร: 091-2828333
+                            </div>
+
+
+                        </div>
+                    </div>
+                    <div class=" col-md-4">
                         <hr class="light">
                         <h5>เกี่ยวกับเรา</h5>
                         <hr class="light">
                         <p class="mt-2">ศูนย์จัดเตรียมกิจกรรมมากมายเพื่อผู้สูงอายุ
-                          และข่าวประชาสัมพันธ์เรื่องสุขภาพเพื่อชีวิตที่ดีขึ้น</p>
-        
-        
-                      </div>
-        
-        
-        
-                      <div class="col-md-4">
+                            และข่าวประชาสัมพันธ์เรื่องสุขภาพเพื่อชีวิตที่ดีขึ้น</p>
+
+
+                    </div>
+
+
+
+                    <div class="col-md-4">
                         <hr class="light">
                         <h5>ติดต่อเรา</h5>
                         <hr class="light">
                         <p class="mt-1">Office: 02-222-0000</p>
                         <p>Address:City, State, 00000</p>
-        
-                      </div>
-        
+
                     </div>
-                  </div>
-            </footer>
-        
-          </div>
+
+                </div>
+            </div>
+        </footer>
+
+    </div>
 
 </body>
 
