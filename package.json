@@ -1,0 +1,27 @@
+{
+  "name": "old",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mukuro557/old.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mukuro557/old/issues"
+  },
+  "homepage": "https://github.com/mukuro557/old#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cookie-parser": "^1.4.4",
+    "express": "^4.17.1",
+    "multer": "^1.4.2",
+    "mysql": "^2.17.1",
+    "nodemon": "^2.0.1"
+  }
+}
