@@ -39,36 +39,43 @@
                     "date": "\"2019-11-1\"",
                     "name": "วิ่งเพื่อสุขภาพ",
                     "organize": "สุรพง",
-                    "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ",
+                    "limit" : "50",
+                    "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ"
+
                 },
                 {
                     "date": "2019-11-8",
                     "name": "โรงเรียนผู้สูงอายุ",
                     "organize": "สุรพง",
+                    "limit" : "50",
                     "info": "เรียนรู้เรื่องราวใหม่ๆ วัดบัานแม่เลียบ ต.โชคชัย",
                 },
                 {
                     "date": "2019-11-15",
                     "name": "มินิมาราทอนผู้สูงอายุ",
                     "organize": "สุรพง",
+                    "limit" : "ไม่จำกัด",
                     "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ ณ บ้านป่าลัน",
                 },
                 {
                     "date": "2019-11-20",
                     "name": "ปลูกป่า",
                     "organize": "สุรพง",
+                    "limit" : "50",
                     "info": "รักสิ่งแวดล้อม ปลูกป่าชุมชน ณ บ้านแม่เลียบ ",
                 },
                 {
                     "date": "2019-11-24",
                     "name": "เดินวิ่งเพื่อสุขภาพ",
                     "organize": "สุรพง",
+                    "limit" : "100",
                     "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ บ้านใหม่ดอนงาม",
                 },
                 {
                     "date": "2019-11-30",
                     "name": "วิ่งตามฝัน",
                     "organize": "สุรพง",
+                    "limit" : "40",
                     "info": "วิ่งเพื่อสุขภาพเพิ่อเสริมสรัางสุขภาพ บ้านซ้อ",
 
                 },
@@ -84,6 +91,7 @@
                     { data: "name", title: "กิจกรรม" },
                     { data: "organize", title: "ผู้จัดงาน" },
                     { data: "info", title: "รายละเอียด" },
+                    { data: "limit", title: "จำนวน"},
                     { title: "Action", orderable: false, defaultContent: "<button class='btn btn-danger my-1'>ปิดกิจกรรม</button> <button class='btn btn-warning my-1'>แก้ไข</button>" }
                 ],
                 columnDefs: [
@@ -115,7 +123,7 @@
                 $("#txtName").val(data.name);
                 $("#organize").val(data.organize);
                 $("#info").val(data.info);
-
+                $("#limit").val(data.limit);
                 // show modal
                 $("#modalEdit").modal("show");
 
@@ -128,6 +136,7 @@
                     let name = $("#txtName").val();
                     let organize = $("#organize").val();
                     let info = $("#info").val();
+                    let limit =$("#limit").val();
                     console.log(date + " " + name + " " + organize + " " + info);
 
                     //search JS object array for "id"
@@ -146,7 +155,7 @@
                     temp.name = name;
                     temp.organize = organize;
                     temp.info = info;
-
+                    temp.limit = limit;
                     //update data table
                     table.row(i).data(temp).invalidate();
                 } else {
@@ -154,6 +163,7 @@
                     let name = $("#txtName").val();
                     let organize = $("#organize").val();
                     let info = $("#info").val();
+                    let limit = $("#limit").val();
                     //  console.log(id+" "+name+" "+gender+" "+major+" "+school); 
 
                     //close modal
@@ -162,8 +172,8 @@
                         "date": date,
                         "name": name,
                         "organize": organize,
-                        "info": info
-
+                        "info": info,
+                        "limit" :limit
                     }).draw();
                 }
 
@@ -175,6 +185,7 @@
                 $("#txtName").val("");
                 $("#organize").val("");
                 $("#info").val("");
+                $("#limit").val("");
                 $("#modalEdit").modal("show");
 
             });
@@ -329,7 +340,7 @@
 
         <div class="row">
             <div class="col-12">
-                <button id="add" class="btn btn-success float-right mb-3">เพิ่ม</button>
+                <button id="add" class="btn btn-success float-right mb-3">เพิ่มกิจกรรม</button>
             </div>
         </div>
 
@@ -342,7 +353,7 @@
                 <div class="modal-dialog" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h4 class="modal-title" id="modelTitleId">Edit</h4>
+                            <h4 class="modal-title" id="modelTitleId">แก้ไข</h4>
                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -352,10 +363,11 @@
                             <input type="text" class="form-control mb-1" id="txtName" placeholder="ชื่อกิจกรรม">
                             <input type="text" class="form-control mb-1" id="organize" placeholder="ชื่อผู้จัด">
                             <input type="text" class="form-control my-1" id="info" placeholder="รายละเอียด">
+                            <input type="text" class="form-control my-1" id="limit" placeholder="จำนวน">
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                            <button id="btnSave" type="button" class="btn btn-primary">Save</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">ยกเลิก</button>
+                            <button id="btnSave" type="button" class="btn btn-success">บันทึก</button>
                         </div>
                     </div>
                 </div>
