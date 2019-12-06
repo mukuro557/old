@@ -203,12 +203,12 @@ app.get("/", function (req, res) {
 
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< visitmainpage>>>>>>>>>>>>>>>>>>>>>>>>>>>>
  app.get("/mainpage", function (req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
+    let sql = "SELECT a.information,a.date,y.img,y.information,c.img, c.title,c.information FROM annoucement a, activity y,cardinfo c"
  });
 
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  readmore >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
  app.get("/readmore", function (req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
+    let sql = "SELECT information FROM cardinfo"
  });
 
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< visit activity >>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -218,12 +218,12 @@ app.get("/", function (req, res) {
 
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< show information >>>>>>>>>>>>>>>>>>>>>>>>
  app.get("/display_activity", function (req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
+    let sql = "SELECT `activity_name`, `organizer`, `information`, `limit_join`, `date`, `number_join`  FROM `activity`"
  });
 
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< visit profile  >>>>>>>>>>>>>>>>>>>>>>>>>>
  app.get("/profile", function (req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
+    let sql ="SELECT l.username,l.img,l.email,o.address,o.tel FROM login l, old_info o WHERE l.id_login =o.id_login"
  });
 
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< visit user profile >>>>>>>>>>>>>>>>>>>>>>>
@@ -238,7 +238,7 @@ app.get("/", function (req, res) {
 
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< display info in>>>>>>>>>>>>>>>>>>>>>>>>>
  app.get("/display_confirmad", function (req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
+   
  });
 
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< display carousel >>>>>>>>>>>>>>>>>>>>>>>>
@@ -350,6 +350,27 @@ const type = req.body.type;
 const sql = "INSERT INTO `annoucement`( `information`, `id_login`, `type`, `date`) VALUES (?,?,?,?)";
 con.query(sql, [,information,id_login,type,date,], function (err, result, fields) {
 });
+
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< canceljoin activity >>>>>>>>>>>>>>>>>>>>>>>>>>>
+app.delete("/cancel_joinactivity", function (req, res) {
+    
+  
+    const spl = "update user set date = ?,name = ?,surname = ?,id_card = ?,id_address = ?,id_login =:? ";
+  
+    con.query(sql, [date,name,surname,id_card ,id_address,id_login ], function () {
+    });
+ });
+
+ //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< cancel approve >>>>>>>>>>>>>>>>>>>>>>>>>>>
+app.delete("/cancel_approveinfo", function (req, res) {
+    
+  
+    const spl = "update user set date = ?,name = ?,surname = ?,id_card = ?,id_address = ?,id_login =:? ";
+  
+    con.query(sql, [date,name,surname,id_card ,id_address,id_login ], function () {
+    });
+ });
+
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< start port >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 const PORT = 50000
