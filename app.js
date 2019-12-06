@@ -70,3 +70,10 @@ app.post("/login", function (req, res) {
         }
     });
 });
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< start port >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+const PORT = 8080
+app.listen(PORT, function () {
+    console.log("Sever is running at " + PORT);
+});
