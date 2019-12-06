@@ -67,13 +67,10 @@
                 
             });
             $("#save").click(function () { 
-                $(".check").attr('disabled', true)
-                
+                alert("บันทึกสำเร็จ");
+                window.location("/adminactivity.html");
             });
-            $("#edit").click(function () { 
-                $(".check").attr('disabled', false)
-                
-            });
+           
             
         });
     </script>
@@ -230,11 +227,8 @@
            </table>
            <div class="row my-2">
            <div class="col-sm-11" style="text-align: right;"> 
-            <button class="btn btn-dark " id="edit">แก้ไข</button>
+           <button class="btn btn-success" id="save">บันทึก</button> 
         </div>
-           <div class="col-sm-1" style="text-align: left;">
-               <button class="btn btn-success" id="save">บันทึก</button>
-            </div>
            </div>
    </div>
 </div>
