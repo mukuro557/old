@@ -342,14 +342,14 @@ app.get("/", function (req, res) {
  });
  
 
-const date = req.body.date;
-const information = req.body.information;
-const id_login = req.body.id_login ;
-const type = req.body.type;
+ // const date = req.body.date;
+// const information = req.body.information;
+// const id_login = req.body.id_login ;
+// const type = req.body.type;
 
-const sql = "INSERT INTO `annoucement`( `information`, `id_login`, `type`, `date`) VALUES (?,?,?,?)";
-con.query(sql, [,information,id_login,type,date,], function (err, result, fields) {
-});
+// const sql = "INSERT INTO `annoucement`( `information`, `id_login`, `type`, `date`) VALUES (?,?,?,?)";
+// con.query(sql, [,information,id_login,type,date,], function (err, result, fields) {
+// });
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< canceljoin activity >>>>>>>>>>>>>>>>>>>>>>>>>>>
 app.delete("/cancel_joinactivity", function (req, res) {
