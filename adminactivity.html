@@ -98,29 +98,28 @@
                     { data: "organize", title: "ผู้จัดงาน" },
                     { data: "info", title: "รายละเอียด" },
                     { data: "limit", title: "จำนวน"},
-                    { title: "Action",render: function (data, type, row, meta) {
-                            let but = "<button class='btn btn-danger my-1'>ปิดกิจกรรม</button> <button class='btn btn-warning my-1'>แก้ไข</button>"
-                            if (row.id == 1 ) {
-                                but = "<button class='btn btn-danger my-1' disabled>ปิดกิจกรรม</button> <button class='btn btn-warning my-1'>ใช้กิจกรรม</button>"
-                            }
+                    { title: "แก้ไขกิจกรรม",render: function (data, type, row, meta) {
+                            let but = "<button class='btn btn-warning my-1'>แก้ไข</button>"
                             return but;
-                        }}  
+                        }},{
+                        data: "status",
+                        title: "สถานะ",
+                        render: function (data, type, row, meta) {
+                            let sw = "<input type='checkbox' checked data-toggle='toggle' data-on='Ready' data-off='Not Ready' data-onstyle='success' data-offstyle='danger'>";
+                            if (data == 0) {
+                                sw = "<form><label for='flip-checkbox-1'>Flip toggle switch checkbox:</label><input type='checkbox' data-role='flipswitch' name='flip-checkbox-1' id='flip-checkbox-1'></form>";
+                            }
+                            return sw;
+                        }
+                    },{title: "ยืนยันผู้ร่วมกิจกรรม",render: function (data, type, row, meta) {
+                            let but = "<a class='' href='#'>ยืนยันผู้เข้าร่วม</a>"
+                            return but;
+                        }}
                 ],
                 columnDefs: [
                     // make the last column align right, also target: "_all"
-                    { "className": "dt-center", "targets": 3 }
+                    { "className": "dt-center", "targets": 4 }
                 ]
-            });
-            // Delete 
-            $('#myTable tbody').on('click', '.btn-danger', function () {
-                $(this).text("เปิดกิจกรรม");
-                $(this).attr("class","btn btn-success");
-
-            });
-            $('#myTable tbody').on('click', '.btn-success', function () {
-                $(this).text("ปิดกิจกรรม");
-                $(this).attr("class","btn btn-danger");
-
             });
 
             // Edit
@@ -201,6 +200,37 @@
                 $("#modalEdit").modal("show");
 
             });
+            //Status toggle
+            $('#myTable tbody').on('click', '.btn-info', function () {
+                const currentRow = $(this).parents('tr');
+                //get selected row and update value
+                let temp = table.row(currentRow).data();
+                if(temp.progress == 1) {
+                    temp.progress = 0;
+                }
+
+                //update data table
+                table.row(currentRow).data(temp).invalidate();
+            });
+
+            // Toogle switch
+            $('#myTable tbody').on('change', '.custom-control-input', function () {
+                const currentRow = $(this).parents('tr');
+                //get selected row and update value
+                let temp = table.row(currentRow).data();
+                //we can check current switch status by "if(this.checked)"
+                if(temp.status == 1) {
+                    temp.status = 0;
+                }
+                else {
+                    temp.status = 1;
+                }
+                alert(temp.id + "@" + temp.status);
+
+                //update data table
+                table.row(currentRow).data(temp).invalidate();
+            });
+
         });
     </script>
     <style>
