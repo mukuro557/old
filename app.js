@@ -141,34 +141,9 @@ app.post("/save_add_health", function(req, res){
 });
 
 
-
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< save_edit _announce >>>>>>>>>>>>>>>>>>>>>>>>>>>
-
-app.post("/save_edit_announce",function(req,res){
-    // const date = req.body.date;
-    const information = req.body.information;
-    const id = req.body.id;
-    
-    
-    const sql="UPDATE `annoucement` SET `id_annoucement`=?,`information`=?";
-
-    con.query(sql, [ information, id], function (err, fields) {
-        if (err) {
-            
-            res.status(500).send("Server error");
-        }
-        else {
-            res.send("/");
-        }
-    });
-});
-
-
-
-
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< save_edit_anoucement >>>>>>>>>>>>>>>>>>>>>>>>>>
 
-app.post("/save_edit_announce", function(req, res){
+app.put("/save_edit_announce", function(req, res){
     const date = req.body.date;
     const img = req.body.img;
     const title = req.body.title;
@@ -204,11 +179,12 @@ app.get("/", function (req, res) {
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< visitmainpage>>>>>>>>>>>>>>>>>>>>>>>>>>>>
  app.get("/mainpage", function (req, res) {
     let sql = "SELECT a.information,a.date,y.img,y.information,c.img, c.title,c.information FROM annoucement a, activity y,cardinfo c"
- });
+con 
+});
 
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  readmore >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
  app.get("/readmore", function (req, res) {
-    let sql = "SELECT information FROM cardinfo"
+    let sql = "SELECT information,img, title FROM cardinfo "
  });
 
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< visit activity >>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -218,11 +194,11 @@ app.get("/", function (req, res) {
 
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< show information >>>>>>>>>>>>>>>>>>>>>>>>
  app.get("/display_activity", function (req, res) {
-    let sql = "SELECT `activity_name`, `organizer`, `information`, `limit_join`, `date`, `number_join`  FROM `activity`"
+    let sql = "SELECT `activity_name`, `organizer`, `information`, `limit_join`, `date`, `number_join`  FROM `activity` "
  });
 
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< visit profile  >>>>>>>>>>>>>>>>>>>>>>>>>>
- app.get("/profile", function (req, res) {
+ app.get("/display_profile", function (req, res) {
     let sql ="SELECT l.username,l.img,l.email,o.address,o.tel FROM login l, old_info o WHERE l.id_login =o.id_login"
  });
 
@@ -243,7 +219,7 @@ app.get("/", function (req, res) {
 
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< display carousel >>>>>>>>>>>>>>>>>>>>>>>>
  app.get("/display_carouselEdit", function (req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
+    
  });
 
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< visit health page >>>>>>>>>>>>>>>>>>>>>>>>>
@@ -253,7 +229,7 @@ app.get("/", function (req, res) {
 
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< display_health >>>>>>>>>>>>>>>>>>>>>>>>>>>>
  app.get("/display_health", function (req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
+   
  });
 
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< mainpage admin >>>>>>>>>>>>>>>>>>>>>>>>>>>>
@@ -263,11 +239,11 @@ app.get("/", function (req, res) {
 
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< display mainpage admin>>>>>>>>>>>>>>>>>>>>
  app.get("/display_mainpage_admin", function (req, res) {
-    res.sendFile(path.join(__dirname, "index.html"));
+   
  });
   
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   editoldinfo   >>>>>>>>>>>>>>>>>>>>>>>>>>>
- app.post("/editoldinfo", function (req, res) {
+ app.put("/editoldinfo", function (req, res) {
     const name = req.body.name;
     const IDcard = req.body.IDcard;
     const Address = req.body.Address;
@@ -282,7 +258,7 @@ app.get("/", function (req, res) {
     });
  });
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  joinactivity  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
- app.post("/joinactivity", function (req, res) {
+ app.put("/joinactivity", function (req, res) {
     const id_old = req.body.id_old;
     const id_activity = req.body.id_activity;
   
@@ -292,7 +268,7 @@ app.get("/", function (req, res) {
     });
  });
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  uploading_profile  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
- app.post("/uploading_profile", function (req, res) {
+ app.put("/uploadimg_profile", function (req, res) {
     const img = req.body.img;
   
     const spl = "update user set img = ? where = ?";
@@ -301,43 +277,43 @@ app.get("/", function (req, res) {
     });
  });
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  Edit_information_of_profile  >>>>>>>>>>>>>>>>>>>
- app.post("/Edit_information_of_profile", function (req, res) {
+ app.put("/Edit_pofileinfo", function (req, res) {
     const name = req.body.name;
-    const mobilephone = req.body.mobilephone;
+    const tel = req.body.tel;
     const email = req.body.email;
     const address = req.body.address;
   
-    const spl = "update user set name = ?, mobliephone = ?, email = ?, address = ? where = ?";
+    const spl = "update user set name = ?, tel = ?, email = ?, address = ? where = ?";
   
-    con.query(sql, [name,mobilephone,email,address], function () {
+    con.query(sql, [name,tel,email,address], function () {
     });
  });
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  approveinfo  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
- app.post("/approveinfo", function (req, res) {
+ app.put("/approveinfo", function (req, res) {
     const date = req.body.date;
     const name = req.body.name;
     const surname = req.body.surname;
     const id_card = req.body.id_card;
-    const id_address = req.body.id_address;         
-    const id_login = req.body.id_loginl;
+    const address = req.body.address;         
+    const id_login = req.body.id_login;
   
-    const spl = "update user set date = ?,name = ?,surname = ?,id_card = ?,id_address = ?,id_login =:? ";
+    const spl = "update user set date = ?,name = ?,surname = ?,id_card = ?,address = ?,id_login =:? ";
   
-    con.query(sql, [date,name,surname,id_card ,id_address,id_login ], function () {
+    con.query(sql, [date,name,surname,id_card , address,id_login ], function () {
     });
  });
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  save_approveinfo  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
- app.post("/save_approveinfo", function (req, res) {
+ app.put("/save_approveinfo", function (req, res) {
     const date = req.body.date;
     const name = req.body.name;
     const surname = req.body.surname;
     const id_card = req.body.id_card;
-    const id_address = req.body.id_address;
+    const address = req.body.address;
     const id_login = req.body.id_loginl;
   
-    const spl = "update user set date = ?,name = ?,surname = ?,id_card = ?,id_address = ?,id_login =:? ";
+    const spl = "update user set date = ?,name = ?,surname = ?,id_card = ?,address = ?,id_login =:? ";
   
-    con.query(sql, [date,name,surname,id_card ,id_address,id_login ], function () {
+    con.query(sql, [date,name,surname,id_card ,address,id_login ], function () {
     });
  });
  
@@ -353,22 +329,15 @@ app.get("/", function (req, res) {
 
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< canceljoin activity >>>>>>>>>>>>>>>>>>>>>>>>>>>
 app.delete("/cancel_joinactivity", function (req, res) {
+ 
+  
     
-  
-    const spl = "update user set date = ?,name = ?,surname = ?,id_card = ?,id_address = ?,id_login =:? ";
-  
-    con.query(sql, [date,name,surname,id_card ,id_address,id_login ], function () {
-    });
  });
 
  //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< cancel approve >>>>>>>>>>>>>>>>>>>>>>>>>>>
 app.delete("/cancel_approveinfo", function (req, res) {
     
   
-    const spl = "update user set date = ?,name = ?,surname = ?,id_card = ?,id_address = ?,id_login =:? ";
-  
-    con.query(sql, [date,name,surname,id_card ,id_address,id_login ], function () {
-    });
  });
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< start port >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
