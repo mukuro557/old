@@ -350,6 +350,120 @@ app.put("/cancel_approveinfo", function (req, res) {
     });
 });
 
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   admin mainpage       >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+app.get("/display_mainpage_admin", function (req, res) {
+
+    let sql = "SELECT `information` FROM `annoucement`"
+    con.query(sql, function (err, result, fields) {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send("Server Error");
+            return;
+        }           
+        const numrows = result.length;
+        
+        if(numrows == 0) {
+            res.status(503).send("No data");
+        }
+        else {
+            //return json of recordset
+            res.json(result);
+        }
+    });
+});
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   Static       >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+app.get("/display_Static", function (req, res) {
+
+    let sql = "SELECT `date`, `activity_name`, 'number_join' FROM `activity` "
+    con.query(sql, function (err, result, fields) {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send("Server Error");
+            return;
+        }           
+        const numrows = result.length;
+        
+        if(numrows == 0) {
+            res.status(503).send("No data");
+        }
+        else {
+            //return json of recordset
+            res.json(result);
+        }
+    });
+});
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   admin activity       >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+app.get("/display_admin_activity", function (req, res) {
+
+    let sql = "SELECT `date`,'organizer',`information`,'number_join' FROM `activity`"
+    con.query(sql, function (err, result, fields) {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send("Server Error");
+            return;
+        }           
+        const numrows = result.length;
+        
+        if(numrows == 0) {
+            res.status(503).send("No data");
+        }
+        else {
+            //return json of recordset
+            res.json(result);
+        }
+    });
+});
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   display QrCode       >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+app.get("/display_Qrcode", function (req, res) {
+
+    const Id = req.body.Id
+    let sql = "SELECT `name`, `surname`, 'address','tel' FROM `old_info` where id_old = ? "
+    con.query(sql, [Id], function (err, result, fields) {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send("Server Error");
+            return;
+        }           
+        const numrows = result.length;
+        
+        if(numrows == 0) {
+            res.status(503).send("No data");
+        }
+        else {
+            //return json of recordset
+            res.json(result);
+        }
+    });
+});
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   display confirmad       >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+app.get("/display_confirmad", function (req, res) {
+    
+    let sql = "SELECT 'date',`name`, `surname`, 'id_card','address','id_old' FROM `old_info` where Approve_status = 0 "
+    con.query(sql, function (err, result, fields) {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send("Server Error");
+            return;
+        }           
+        const numrows = result.length;
+        
+        if(numrows == 0) {
+            res.status(503).send("No data");
+        }
+        else {
+            //return json of recordset
+            res.json(result);
+        }
+    });
+});
+
+
+
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< start port >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 const PORT = 50000
