@@ -251,10 +251,11 @@ app.put("/editoldinfo", function (req, res) {
     const Mobilephone = req.body.Mobilephone;
     const Symptom = req.body.Symptom;
     const Allergic = req.body.Allergic;
+    const id = req.body.id;
 
-    const sql = "update user set name = ?,IDcard = ?,Address = ?,Emergencycall = ?,Mobilephone =?,Symptom =?,Allergic = ? where = ?";
+    const sql = "update user set name = ?,IDcard = ?,Address = ?,Emergencycall = ?,Mobilephone =?,Symptom =?,Allergic = ? where id_old= ?";
 
-    con.query(sql, [name, IDcard, Address, Emergencycall, Mobilephone, Symptom, Allergic], function () {
+    con.query(sql, [name, IDcard, Address, Emergencycall, Mobilephone, Symptom, Allergic,id], function () {
     });
 });
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  joinactivity  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
