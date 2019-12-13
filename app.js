@@ -462,7 +462,125 @@ app.get("/display_confirmad", function (req, res) {
     });
 });
 
-
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< show information of carousel edit page >>>>>>>>>>>>>>>>>>>>>>>>
+app.get("/display_carouselEdit", function (req, res) {
+ 
+    const Id = req.body.Id;
+    
+    let sql = "SELECT `img`, `information` FROM `activity` where id_activity = ?";
+    con.query(sql,[Id], function (err, result, fields) {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send("เซิร์ฟเวอร์ไม่ตอบสนอง");
+            return;
+        }           
+        const numrows = result.length;
+        
+        if(numrows == 0) {
+            res.status(401).send("ไม่มีข้อมูล");
+        }
+        else {
+            //return json of recordset
+            res.json(result);
+        }
+    });
+});
+ 
+ 
+ 
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< show information of health page >>>>>>>>>>>>>>>>>>>>>>>>
+app.get("/display_health", function (req, res) {
+ 
+    const Id = req.body.Id;
+ 
+    let sql = "SELECT `img` , `title` , `date` , `information` FROM `cardinfo` where Id_healthcard = ?"
+    con.query(sql,[Id], function (err, result, fields) {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send("เซิร์ฟเวอร์ไม่ตอบสนอง");
+            return;
+        }           
+        const numrows = result.length;
+        
+        if(numrows == 0) {
+            res.status(401).send("ไม่มีข้อมูล");
+        }
+        else {
+            //return json of recordset
+            res.json(result);
+        }
+    });
+});
+ 
+ 
+ 
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< show information of elder page >>>>>>>>>>>>>>>>>>>>>>>>
+app.get("/display_oldinfo", function (req, res) {
+ 
+    const Id = req.body.Id;
+ 
+ 
+    let sql = "SELECT `name` , `surname` , `id_card` , `address`, `tel`, `emergency_call`, `symptoms`, `Approve_status`, `allergic medicatation` FROM `old_info` where Id_old = ?"
+    con.query(sql,[Id], function (err, result, fields) {
+        if (err) {
+            console.error(err.message);
+            res.status(500).send("เซิร์ฟเวอร์ไม่ตอบสนอง");
+            return;
+        }           
+        const numrows = result.length;
+        
+        if(numrows == 0) {
+            res.status(401).send("ไม่มีข้อมูล");
+        }
+        else {
+            //return json of recordset
+            res.json(result);
+        }
+    });
+});
+ 
+ 
+ 
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< update information of carousel edit page >>>>>>>>>>>>>>>>>>>>>>>>>>
+app.put("/save_carouselEdit", function (req, res) {
+    const img = req.body.img;
+    const information = req.body.information;
+    const Id = req.body.Id;
+ 
+    const sql = "UPDATE `activity` SET img = ?, information = ? WHERE id_activity = ?";
+    con.query(sql, [img, information, Id], function (err, result, fields) {
+        if (err) {
+            console.log(err)
+            res.status(500).send("เซิร์ฟเวอร์ไม่ตอบสนอง");
+        }
+        else {
+            res.send("บันทึกสำเร็จ");
+        }
+    });
+});
+ 
+ 
+ 
+ 
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< update information of edit health page >>>>>>>>>>>>>>>>>>>>>>>>>>
+app.put("/save_edit_health", function (req, res) {
+    const img = req.body.img;
+    const title = req.body.title;
+    const date = req.body.date;
+    const information = req.body.information;
+    const Id = req.body.Id;
+ 
+    const sql = "UPDATE `cardinfo` SET img = '?', title = '?', date = '?', information = '?' WHERE id_healthcard = ?";
+    con.query(sql, [img,title,date, information,Id], function (err, result, fields) {
+        if (err) {
+            console.log(err)
+            res.status(500).send("เซิร์ฟเวอร์ไม่ตอบสนอง");
+        }
+        else {
+            res.send("บันทึกสำเร็จ");
+        }
+    });
+});
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< start port >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
