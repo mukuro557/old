@@ -462,7 +462,7 @@ app.get("/display_health", function (req, res) {
 app.put("/save_edit_health", function (req, res) {
     const img = req.body.img;
     const title = req.body.title;
-    const date = req.body.date;
+    const date = new Date();
     const information = req.body.information;
     const Id = req.body.Id;
 
@@ -481,7 +481,7 @@ app.put("/save_edit_health", function (req, res) {
 //27..<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< saveaddhealth >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 app.post("/save_add_health", function (req, res) {
-    const date = req.body.date;
+    const date = new Date();
     const information = req.body.information;
     const img = req.body.img;
     const title = req.body.title;
@@ -530,7 +530,7 @@ app.get("/display_mainpage_admin", function (req, res) {
 
 //30..<<<<<<<<<<<<<<<<<<<<<<<<<< add anoucement >>>>>>>>>>>>>>>>>>>>>>
 app.get("/save_add_announce", function (req, res) {
-    const date = req.body.date;
+    const date = new Date();
     const information = req.body.information;
     const Id_login = req.body.Id_login
 
@@ -558,7 +558,7 @@ app.get("/save_add_announce", function (req, res) {
 //31..<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< delete_edit_anoucement >>>>>>>>>>>>>>>>>>>>>>>>>>
 
 app.put("/delete_announce", function (req, res) {
-    const date = req.body.date;
+    const date = new Date();
     const information = req.body.information;
     const Id = req.body.Id
 
@@ -580,7 +580,7 @@ app.put("/delete_announce", function (req, res) {
 //32..<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< save_edit_anoucement >>>>>>>>>>>>>>>>>>>>>>>>>>
 
 app.put("/save_edit_announce", function (req, res) {
-    const date = req.body.date;
+    const date = new Date()
     const information = req.body.information;
     const Id = req.body.Id
 
@@ -672,7 +672,7 @@ app.get("/display_activityadmin", function (req, res) {
 
 //39..<<<<<<<<<<<<<<<<<<<<<< save activity >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 app.get("/save_add_adminactivity", function (req, res) {
-    const date = req.body.date;
+    const date = new Date();
     const activity_name = req.body.activity_name;
     const organizer = req.body.organizer;
     const information = req.body.information;
@@ -702,7 +702,7 @@ app.get("/save_add_adminactivity", function (req, res) {
 
 //40..<<<<<<<<<<<<<<<<<<<<<<<<<<< edit button >>>>>>>>>>>>>>>>>>>>>>>>>>
 app.put("/save_edit_adminactivity", function (req, res) {
-    const date = req.body.date;
+    const date = new Date();
     const activity_name = req.body.activity_name;
     const organizer = req.body.organizer;
     const information = req.body.information;
@@ -802,7 +802,7 @@ app.get("/display_oldinfo_hospitalinfo", function (req, res) {
 
 //47..<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< add note >>>>>>>>>>>>>>>>>
 app.get("/add_note", function (req, res) {
-    const date = req.body.date;
+    const date = new Date();
     const note = req.body.note;
     const Id = req.body.Id
     const Id_login = req.body.Id_login
@@ -826,6 +826,12 @@ app.get("/add_note", function (req, res) {
             res.send("บันทึกสำเร็จ");
         }
     });
+});
+
+//////============
+app.get("/time", function (req, res) {
+    const dt = new Date();
+    res.send(dt);
 });
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< start port >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
