@@ -94,7 +94,7 @@ app.post("/login", function (req, res) {
             else {
                 bcrypt.compare(password, result[0].password, function (err, resp) {
                     if (err) {
-                        res.status(503).send("Authentication Server error");
+                        res.status(503).send("การรับรองเซิร์ฟเวอร์ผิดพลาด");
                     }
                     else if (resp == true) {
 
@@ -111,7 +111,7 @@ app.post("/login", function (req, res) {
                     }
                     else {
                         //wrong password
-                        res.status(403).send("Wrong password");
+                        res.status(403).send("รหัสไม่ถูกต้อง");
                     }
                 });
             }
@@ -144,15 +144,15 @@ app.post("/signUp", function (req, res) {
         con.query(sql, [username, hash], function (err, result, fields) {
             if (err) {
                 console.error(err.message);
-                res.status(503).send("Database server error");
+                res.status(503).send("ฐานข้อมูลเซิร์ฟเวอร์ผิดพลาด");
                 return;
             }
 
             // get inserted rows
             const numrows = result.affectedRows;
             if (numrows != 1) {
-                console.error("Insert to DB failed");
-                res.status(503).send("Database server error");
+                console.error("แทรกข้อมูลสู่ฐานข้อมูลไม่สำเร็จ");
+                res.status(503).send("ฐานข้อมูลเซิร์ฟเวอร์ผิดพลาด");
             }
             else {
                 res.send("สมัครสำเร็จ");
@@ -274,13 +274,13 @@ app.get("/display_Qrcode", function (req, res) {
     con.query(sql, [Id], function (err, result, fields) {
         if (err) {
             console.error(err.message);
-            res.status(500).send("Server Error");
+            res.status(500).send("เซิร์ฟเวอร์ไม่ตอบสนอง");
             return;
         }
         const numrows = result.length;
 
         if (numrows == 0) {
-            res.status(503).send("No data");
+            res.status(503).send("ไม่มีข้อมูล");
         }
         else {
             //return json of recordset
