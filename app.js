@@ -1,45 +1,72 @@
 //<=========== Import packages ==========>
 const express = require("express");
 const path = require("path");
-const body_parser = require("body-parser");
+
+const bcrypt = require("bcryptjs");
+const bodyParser = require("body-parser");
 const multer = require("multer");
 const mysql = require("mysql");
-const bcrypt = require('bcryptjs');
 const config = require("./dbConfig.js");
+
 
 const app = express();
 const con = mysql.createConnection(config);
-const multerOption = multer.diskStorage({
+
+
+//set upload directory and rename upload file with timestamp
+const storageOption = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, "uploads/");
+        cb(null, 'uploads/')
     },
     filename: function (req, file, cb) {
+        
         cb(null, Date.now() + "_" + file.originalname);
+       
     }
 });
-const upload = multer({ storage: multerOption }).single("fileUpload");
-
-//<=========== Middleware ==========>
-
-app.use(body_parser.urlencoded({ extended: true }));
-app.use(body_parser.json());
 
 
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<service>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+const upload = multer({ storage: storageOption }).single("filetoupload");
 
+// ============= Middleware ==============
+
+app.use(express.static(path.join(__dirname, "public")));
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   SERVICE  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+
+
+// ============= Upload ==============
+app.post("/uploading", function (req, res) {
+
+    upload(req, res, function (err, result) {
+        if (err) {
+            res.status(500).send("Upload failed");
+            return;
+        }
+        else {
+
+            res.json(req.file.filename);
+            console.log(req.file.filename)
+
+            // })
+        }
+    })
+});
 //1...<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Root >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "mainpage.html"));
+    res.sendFile(path.join(__dirname, "uploadedit.html"));
 });
 
 //2...<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< visitmainpage show annouce>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 app.get("/mainpage_anouce", function (req, res) {
     let sql = "SELECT information FROM annoucement WHERE date =(SELECT MAX(date) FROM annoucement)"
-    con.query(sql,  function (err, result, fields) {
+    con.query(sql, function (err, result, fields) {
         if (err) {
 
         } else {
-            
+
             res.send(result);
         }
     });
@@ -48,12 +75,12 @@ app.get("/mainpage_anouce", function (req, res) {
 //3..<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< visit mainpage show carousel>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 app.get("/mainpage_carousel", function (req, res) {
     let sql = "SELECT information,img FROM activity WHERE img != '' AND img IS NOT null AND activity_status = 1"
-    con.query(sql,  function (err, result, fields) {
+    con.query(sql, function (err, result, fields) {
         if (err) {
 
         } else {
-            
-            res.send(result[0],result[1],result[2]);
+
+            res.send(result[0], result[1], result[2]);
         }
     });
 });
@@ -62,12 +89,12 @@ app.get("/mainpage_carousel", function (req, res) {
 //4..<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< visitmainpage show health>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 app.get("/mainpage_healthcard", function (req, res) {
     let sql = "SELECT information,img,title FROM cardinfo ORDER BY date DESC"
-    con.query(sql,  function (err, result, fields) {
+    con.query(sql, function (err, result, fields) {
         if (err) {
 
         } else {
-            
-            res.send(result[0],result[1],result[2]);
+
+            res.send(result[0], result[1], result[2]);
         }
     });
 });
@@ -164,11 +191,11 @@ app.post("/signUp", function (req, res) {
 //7..<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< visitmainpage show name on nave>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 app.get("/mainpage_nav", function (req, res) {
     let sql = "SELECT username FROM login WHERE id_login =?"
-    con.query(sql,  function (err, result, fields) {
+    con.query(sql, function (err, result, fields) {
         if (err) {
 
         } else {
-            
+
             res.send(result);
         }
     });
@@ -297,10 +324,10 @@ app.get("/treatment", function (req, res) {
 //16..<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< show note >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 app.get("/display_note", function (req, res) {
 
-    const Id  = req.body.Id;
+    const Id = req.body.Id;
 
     let sql = "SELECT n.`date`,n.`note`,l.username FROM note n join login l where n.`id_old` = ? AND n.id_login = l.id_login"
-    con.query(sql,[Id], function (err, result, fields) {
+    con.query(sql, [Id], function (err, result, fields) {
         if (err) {
             console.error(err.message);
             res.status(500).send("เซิร์ฟเวอร์ไม่ตอบสนอง");
@@ -334,7 +361,7 @@ app.put("/edit_oldinfo", function (req, res) {
             res.status(500).send("เซิร์ฟเวอร์ไม่ตอบสนอง");
             return;
         }
-        
+
         else {
             //return json of recordset
             res.send("บันทึกสำเร็จ");
@@ -416,10 +443,10 @@ app.get("/display_confirmad", function (req, res) {
 //23..<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< update confirmad page >>>>>>>>>>>>>>>>>>>>>>>>>>
 app.put("/confirm_oldinformation", function (req, res) {
     const Id = req.body.Id;
-    const status =req.body.status;
+    const status = req.body.status;
 
     const sql = "UPDATE `old_info` SET Approve_status = ? WHERE id_old = ?";
-    con.query(sql, [ status,Id], function (err, result, fields) {
+    con.query(sql, [status, Id], function (err, result, fields) {
         if (err) {
             console.log(err)
             res.status(500).send("เซิร์ฟเวอร์ไม่ตอบสนอง");
@@ -462,12 +489,12 @@ app.get("/display_health", function (req, res) {
 app.put("/save_edit_health", function (req, res) {
     const img = req.body.img;
     const title = req.body.title;
-    const date = new Date();
+    const date = new Date();
     const information = req.body.information;
     const Id = req.body.Id;
 
-    const sql = "UPDATE `cardinfo` SET img = '?', title = '?', date = '?', information = '?' WHERE id_healthcard = ?";
-    con.query(sql, [img, title, date, information, Id], function (err, result, fields) {
+    const sql = "UPDATE `cardinfo` SET `title`=?,`information`=?,`img`=?,`date`=?,`id_login`=1 WHERE id_healthcard = ?";
+    con.query(sql, [title,information,img ,date , Id], function (err, result, fields) {
         if (err) {
             console.log(err)
             res.status(500).send("เซิร์ฟเวอร์ไม่ตอบสนอง");
@@ -481,22 +508,18 @@ app.put("/save_edit_health", function (req, res) {
 //27..<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< saveaddhealth >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 app.post("/save_add_health", function (req, res) {
-    const date = new Date();
+    const date = new Date();
     const information = req.body.information;
     const img = req.body.img;
     const title = req.body.title;
+    const Id = req.body.Id;
 
-    const sql = "INSERT INTO cardinfo(date, information,img,title) VALUES (?,?,?,?)";
-    con.query(sql, [date, information.img, title], function (err, result, fields) {
+    const sql = "INSERT INTO cardinfo(date,information,img,title,id_login) VALUES (?,?,?,?,?)";
+    con.query(sql, [date, information, img, title, Id], function (err, result, fields) {
         if (err) {
             console.error(err.message);
             res.status(500).send("เซิร์ฟเวอร์ไม่ตอบสนอง");
             return;
-        }
-        const numrows = result.length;
-
-        if (numrows == 0) {
-            res.status(401).send("บันทึกไม่สำเร็จ");
         }
         else {
             //return json of recordset
@@ -530,7 +553,7 @@ app.get("/display_mainpage_admin", function (req, res) {
 
 //30..<<<<<<<<<<<<<<<<<<<<<<<<<< add anoucement >>>>>>>>>>>>>>>>>>>>>>
 app.get("/save_add_announce", function (req, res) {
-    const date = new Date();
+    const date = new Date();
     const information = req.body.information;
     const Id_login = req.body.Id_login
 
@@ -543,11 +566,6 @@ app.get("/save_add_announce", function (req, res) {
             res.status(500).send("เซิร์ฟเวอร์ไม่ตอบสนอง");
             return;
         }
-        const numrows = result.length;
-
-        if (numrows == 0) {
-            res.status(401).send("บันทึกไม่สำเร็จ");
-        }
         else {
             //return json of recordset
             res.send("บันทึกสำเร็จ");
@@ -558,18 +576,18 @@ app.get("/save_add_announce", function (req, res) {
 //31..<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< delete_edit_anoucement >>>>>>>>>>>>>>>>>>>>>>>>>>
 
 app.put("/delete_announce", function (req, res) {
-    const date = new Date();
+    const date = new Date();
     const information = req.body.information;
     const Id = req.body.Id
 
     const sql = "Update announcement SET  status = 0 WHERE id_annoucement = ?";
-    con.query(sql, [information, date,Id], function (err, result, fields) {
+    con.query(sql, [information, date, Id], function (err, result, fields) {
         if (err) {
             console.error(err.message);
             res.status(500).send("เซิร์ฟเวอร์ไม่ตอบสนอง");
             return;
         }
-        
+
         else {
             //return json of recordset
             res.send("ลบสำเร็จ");
@@ -580,18 +598,18 @@ app.put("/delete_announce", function (req, res) {
 //32..<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< save_edit_anoucement >>>>>>>>>>>>>>>>>>>>>>>>>>
 
 app.put("/save_edit_announce", function (req, res) {
-    const date = new Date()
+    const date = new Date()
     const information = req.body.information;
     const Id = req.body.Id
 
     const sql = "Update annoucement SET information = ?, status = 1 ,date= ? WHERE id_annoucement = ?";
-    con.query(sql, [information, date,Id], function (err, result, fields) {
+    con.query(sql, [information, date, Id], function (err, result, fields) {
         if (err) {
             console.error(err.message);
             res.status(500).send("เซิร์ฟเวอร์ไม่ตอบสนอง");
             return;
         }
-        
+
         else {
             //return json of recordset
             res.send("บันทึกสำเร็จ");
@@ -634,7 +652,7 @@ app.get("/display_name", function (req, res) {
     const Idjoin = req.body.Idjoin
 
     let sql = "SELECT o.name,o.surname FROM old_info o JOIN `join` j WHERE j.join_status = 3 AND o.id_card = j.id_card AND j.id_activity = ?  "
-    con.query(sql,[Idjoin], function (err, result, fields) {
+    con.query(sql, [Idjoin], function (err, result, fields) {
         if (err) {
             console.error(err.message);
             res.status(500).send("เซิร์ฟเวอร์ไม่ตอบสนอง");
@@ -672,7 +690,7 @@ app.get("/display_activityadmin", function (req, res) {
 
 //39..<<<<<<<<<<<<<<<<<<<<<< save activity >>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 app.get("/save_add_adminactivity", function (req, res) {
-    const date = new Date();
+    const date = new Date();
     const activity_name = req.body.activity_name;
     const organizer = req.body.organizer;
     const information = req.body.information;
@@ -702,7 +720,7 @@ app.get("/save_add_adminactivity", function (req, res) {
 
 //40..<<<<<<<<<<<<<<<<<<<<<<<<<<< edit button >>>>>>>>>>>>>>>>>>>>>>>>>>
 app.put("/save_edit_adminactivity", function (req, res) {
-    const date = new Date();
+    const date = new Date();
     const activity_name = req.body.activity_name;
     const organizer = req.body.organizer;
     const information = req.body.information;
@@ -718,7 +736,7 @@ app.put("/save_edit_adminactivity", function (req, res) {
             res.status(500).send("เซิร์ฟเวอร์ไม่ตอบสนอง");
             return;
         }
-        
+
         else {
             //return json of recordset
             res.send("บันทึกสำเร็จ");
@@ -736,7 +754,7 @@ app.get("/display_checkactivity", function (req, res) {
 
     const Id = req.body.Id;
     let sql = "SELECT o.name,o.surname FROM old_info o JOIN `join` j WHERE j.join_status = 1 AND o.id_card = j.id_card AND j.id_activity = ?  "
-    con.query(sql,[Id], function (err, result, fields) {
+    con.query(sql, [Id], function (err, result, fields) {
         if (err) {
             console.error(err.message);
             res.status(500).send("เซิร์ฟเวอร์ไม่ตอบสนอง");
@@ -757,13 +775,13 @@ app.get("/checkactivityconfirm", function (req, res) {
     const Idol = req.body.Idol;
 
     let sql = "UPDATE `join` SET `join_status`=3 WHERE `id_activity`= ? AND `id_card`=(SELECT id_card FROM old_info WHERE id_old = ?)"
-    con.query(sql,[Idac,Idol], function (err, result, fields) {
+    con.query(sql, [Idac, Idol], function (err, result, fields) {
         if (err) {
             console.error(err.message);
             res.status(500).send("เซิร์ฟเวอร์ไม่ตอบสนอง");
             return;
         }
-        
+
         else {
             //return json of recordset
             res.send("บันทึกสำเร็จ");
@@ -786,7 +804,7 @@ app.get("/display_oldinfo_hospitalinfo", function (req, res) {
 
     const Id = req.body.Id;
     let sql = "SELECT `id_card`, `name`, `surname`, `address`, `emergency_call`, `symptoms`, `allergic medicatation` FROM `old_info` WHERE `id_old`= ?"
-    con.query(sql,[Id], function (err, result, fields) {
+    con.query(sql, [Id], function (err, result, fields) {
         if (err) {
             console.error(err.message);
             res.status(500).send("เซิร์ฟเวอร์ไม่ตอบสนอง");
@@ -802,7 +820,7 @@ app.get("/display_oldinfo_hospitalinfo", function (req, res) {
 
 //47..<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< add note >>>>>>>>>>>>>>>>>
 app.get("/add_note", function (req, res) {
-    const date = new Date();
+    const date = new Date();
     const note = req.body.note;
     const Id = req.body.Id
     const Id_login = req.body.Id_login
@@ -830,8 +848,8 @@ app.get("/add_note", function (req, res) {
 
 //////============
 app.get("/time", function (req, res) {
-    const dt = new Date();
-    res.send(dt);
+    const dt = new Date();
+    res.send(dt);
 });
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< start port >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
