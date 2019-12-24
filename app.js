@@ -37,23 +37,6 @@ app.use(bodyParser.json());
 //<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<   SERVICE  >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
 
-// ============= Upload ==============
-app.post("/uploading", function (req, res) {
-
-    upload(req, res, function (err, result) {
-        if (err) {
-            res.status(500).send("Upload failed");
-            return;
-        }
-        else {
-
-            res.json(req.file.filename);
-            console.log(req.file.filename)
-
-            // })
-        }
-    })
-});
 //1...<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Root >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 app.get("/", function (req, res) {
     res.sendFile(path.join(__dirname, "uploadedit.html"));
@@ -846,10 +829,23 @@ app.get("/add_note", function (req, res) {
     });
 });
 
-//////============
-app.get("/time", function (req, res) {
-    const dt = new Date();
-    res.send(dt);
+
+// 48..<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Upload >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+app.post("/uploading", function (req, res) {
+
+    upload(req, res, function (err, result) {
+        if (err) {
+            res.status(500).send("Upload failed");
+            return;
+        }
+        else {
+
+            res.json(req.file.filename);
+            console.log(req.file.filename)
+
+            // })
+        }
+    })
 });
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< start port >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
