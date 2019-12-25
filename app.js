@@ -19,9 +19,9 @@ const storageOption = multer.diskStorage({
         cb(null, 'uploads/')
     },
     filename: function (req, file, cb) {
-        
+
         cb(null, Date.now() + "_" + file.originalname);
-       
+
     }
 });
 
@@ -57,13 +57,13 @@ app.get("/mainpage_anouce", function (req, res) {
 
 //3..<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< visit mainpage show carousel>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 app.get("/mainpage_carousel", function (req, res) {
-    let sql = "SELECT information,img FROM activity WHERE img != '' AND img IS NOT null AND activity_status = 1"
+    let sql = "SELECT information,img FROM activity WHERE img != '' AND img IS NOT null AND activity_status = 1 ORDER BY date DESC"
     con.query(sql, function (err, result, fields) {
         if (err) {
 
         } else {
 
-            res.send(result[0], result[1], result[2]);
+            res.send(result);
         }
     });
 });
@@ -77,7 +77,7 @@ app.get("/mainpage_healthcard", function (req, res) {
 
         } else {
 
-            res.send(result[0], result[1], result[2]);
+            res.send(result);
         }
     });
 });
@@ -95,8 +95,6 @@ app.post("/login", function (req, res) {
         }
         else {
             const numrows = result.length;
-            console.log(numrows)
-
             if (numrows != 1) {
 
                 res.status(401).send("เข้าสู่ระบบไม่สำเร็จ");
@@ -137,6 +135,7 @@ app.post("/login", function (req, res) {
 app.post("/signUp", function (req, res) {
     const username = req.body.username;
     const password = req.body.password;
+    const email = req.body.email;
 
     //encrypt password
     const saltRounds = 10;    //the cost of encrypting
@@ -150,8 +149,8 @@ app.post("/signUp", function (req, res) {
 
         //hash OK, do the rest here because of async hashing process!
         // insert new user (role is 2)
-        const sql = "INSERT INTO login(username, password, role) VALUES(?,?,2)";
-        con.query(sql, [username, hash], function (err, result, fields) {
+        const sql = "INSERT INTO login(username, password, role,email) VALUES(?,?,2,?)";
+        con.query(sql, [username, hash, email], function (err, result, fields) {
             if (err) {
                 console.error(err.message);
                 res.status(503).send("ฐานข้อมูลเซิร์ฟเวอร์ผิดพลาด");
@@ -173,11 +172,19 @@ app.post("/signUp", function (req, res) {
 
 //7..<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< visitmainpage show name on nave>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 app.get("/mainpage_nav", function (req, res) {
+    const Id = req.body.Id;
+
+
     let sql = "SELECT username FROM login WHERE id_login =?"
-    con.query(sql, function (err, result, fields) {
+    con.query(sql, [Id], function (err, result, fields) {
         if (err) {
 
-        } else {
+        }
+        const numrows = result.length;
+        if (numrows == 0) {
+
+        }
+        else {
 
             res.send(result);
         }
@@ -194,6 +201,7 @@ app.get("/user_profile", function (req, res) {
 //9..<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< visit profile show infomation >>>>>>>>>>>>>>>>>>>>>>>>>>
 app.get("/display_profile", function (req, res) {
     const id = req.body.id
+
     let sql = "SELECT l.name,l.img,l.email,o.address,o.tel FROM login l, old_info o WHERE l.id_login =?"
     con.query(sql, [id], function (err, result, fields) {
 
@@ -477,7 +485,7 @@ app.put("/save_edit_health", function (req, res) {
     const Id = req.body.Id;
 
     const sql = "UPDATE `cardinfo` SET `title`=?,`information`=?,`img`=?,`date`=?,`id_login`=1 WHERE id_healthcard = ?";
-    con.query(sql, [title,information,img ,date , Id], function (err, result, fields) {
+    con.query(sql, [title, information, img, date, Id], function (err, result, fields) {
         if (err) {
             console.log(err)
             res.status(500).send("เซิร์ฟเวอร์ไม่ตอบสนอง");
