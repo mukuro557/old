@@ -39,11 +39,11 @@ app.use(bodyParser.json());
 
 //1...<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< Root >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname, "uploadedit.html"));
+    res.sendFile(path.join(__dirname, "mainpage.html"));
 });
 
 //2...<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< visitmainpage show annouce>>>>>>>>>>>>>>>>>>>>>>>>>>>>
-app.get("/mainpage_anouce", function (req, res) {
+app.get("/mainpage_annouce", function (req, res) {
     let sql = "SELECT information FROM annoucement WHERE date =(SELECT MAX(date) FROM annoucement)"
     con.query(sql, function (err, result, fields) {
         if (err) {
@@ -568,7 +568,6 @@ app.get("/save_add_announce", function (req, res) {
 
 app.put("/delete_announce", function (req, res) {
     const date = new Date();
-    const information = req.body.information;
     const Id = req.body.Id
 
     const sql = "Update announcement SET  status = 0 WHERE id_annoucement = ?";
@@ -855,6 +854,12 @@ app.post("/uploading", function (req, res) {
         }
     })
 });
+
+// 49..<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<  sign up page >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
+app.get("/signuppage", function (req, res) {
+    res.sendFile(path.join(__dirname, "register.html"));
+});
+
 
 // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< start port >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>
 
